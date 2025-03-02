@@ -13,16 +13,11 @@ body {
   overflow-x: hidden;
 }
 
-h2 {
-  margin: 0 0 2vh 0;
-}
-
 /* 头部样式 */
 header {
   position: relative;
   width: 100%;
-  height: 25vh;
-  z-index: 10;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,12 +64,13 @@ header {
 #engine-switch {
   display: flex;
   gap: 15px;
+  margin: 15px;
 }
 
 #engine-switch a {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   padding: 6px 12px;
   color: #333;
   text-decoration: none;
@@ -99,27 +95,36 @@ header {
 
 /* 导航栏样式 */
 nav {
-  position: fixed;
-  top: 25vh;
-  left: 17vw;
-  width: auto;
+  position: relative;
+  width: 100%;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
+  left: 0;
+  transform: none;
 }
 
 nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+nav ul li {
+  flex: 1;
 }
 
 nav a {
   display: block;
-  padding: 20px;
+  padding: 12px 20px;
   color: #000;
   font-size: 1.2em;
   text-decoration: none;
   letter-spacing: 0.1em;
+  white-space: nowrap;
+  text-align: center;
 }
 
 nav a:hover { background: #D6E6F2; }
@@ -128,22 +133,30 @@ nav a.active { background: rgba(255, 214, 165, 0.5); }
 /* 内容区样式 */
 .content-wrapper {
   display: flex;
-  flex: 1;
+  flex-direction: column;
+  width: 70vw;
   justify-content: center;
   align-items: flex-start;
+  margin: 0 auto;
 }
 
 main {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 20px;
   flex: 1;
-  margin-left: 3vw;
-  max-width: 50vw;
 }
 
 section { 
-  margin-bottom: 40px; 
   background: rgba(255, 255, 255, 0.3);
   padding: 18px;
   border-radius: 8px;
+  display: none;
+}
+
+section.active {
+  display: block;
 }
 
 /* 子分类标签样式 */
@@ -280,14 +293,40 @@ footer a {
 
 /* 响应式布局 */
 @media (max-width: 768px) {
-  nav { display: none; }
+  /* 删除固定定位相关样式 */
+  nav { 
+    position: relative;  /* 改为相对定位 */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+  }
+  
+  nav ul {
+    flex-wrap: wrap;  /* 允许导航项目换行 */
+  }
+  
+  nav ul li {
+    flex: 1 1 auto;  /* 允许项目自动调整大小 */
+    min-width: 120px;  /* 设置最小宽度防止过度挤压 */
+  }
+  
+  nav a {
+    padding: 10px;
+    font-size: 1em;
+  }
   
   main {
     margin-left: 0;
-    padding-top: 60px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .content-wrapper {
+    width: 90vw;  /* 移动端稍微扩大内容区域宽度 */
   }
   
   .card-list {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
   }
 }

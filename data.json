@@ -1,0 +1,102 @@
+{
+  "categories": [
+    {
+      "id": "category1",
+      "name": "热门推荐",
+      "items": [
+        {
+          "name": "DeepSeek",
+          "url": "https://chat.deepseek.com/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/b3/ed/24b3ed69-fb18-9a44-6101-721adc192f2e/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/434x0w.webp",
+          "description": "说明示例"
+        },
+        {
+          "name": "ChatGPT",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "Grok",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "Minimax",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "Step",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "元宝",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "豆包",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "文心一言",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "Qwen",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        },
+        {
+          "name": "Gemini",
+          "url": "https://chatgpt.com/",
+          "logo": "https://cdn.deepseek.com/chat/icon.png",
+          "description": "说明示例"
+        }
+      ]
+    },
+    {
+      "id": "category2",
+      "name": "AI工具",
+      "items": [
+        {
+          "name": "小艺",
+          "url": "https://xiaoyi.huawei.com/chat/",
+          "logo": "https://example.com/favicon.ico"
+        },
+        {
+          "name": "Suno",
+          "url": "https://app.suno.ai/",
+          "logo": "https://example.com/favicon.ico"
+        }
+      ]
+    },
+    {
+      "id": "category3", 
+      "name": "在线工具",
+      "items": [
+        {
+          "name": "Convertio",
+          "url": "https://convertio.co/zh/",
+          "logo": "https://example.com/favicon.ico"
+        },
+        {
+          "name": "深言达意",
+          "url": "https://www.shenyandayi.com/",
+          "logo": "https://example.com/favicon.ico"
+        }
+      ]
+    }
+  ]
+}
