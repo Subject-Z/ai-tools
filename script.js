@@ -1,8 +1,116 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // 加载数据
-  await loadData();  // 添加这一行
-  
-  // 网站测速与跳转管理
+  // 首先定义所有类
+  class CardManager {
+    constructor() {
+      this.initCardLogos();
+      this.initCardEvents();
+    }
+
+    initCardLogos() {
+      document.querySelectorAll('.card[data-logo]').forEach(card => {
+        card.style.setProperty('--logo-url', `url("${card.dataset.logo}")`);
+      });
+    }
+
+    initCardEvents() {
+      // 修改卡片点击事件处理
+      document.addEventListener('click', e => {
+        const target = e.target || e.srcElement; // 增加兼容性处理
+        const card = target.closest ? target.closest('.card') : findParentByClass(target, 'card');
+        if (card) {
+          const link = card.querySelector('a');
+          if (link) window.open(link.href, '_blank');
+        }
+      });
+    }
+  }
+
+  class SearchManager {
+    constructor() {
+      this.form = document.getElementById('search-form');
+      this.searchInput = this.form.querySelector('input');
+      this.initEngineSwitch();
+    }
+
+    initEngineSwitch() {
+      document.addEventListener('click', e => {
+        const engineLink = e.target.closest('.engine-link');
+        if (engineLink) {
+          e.preventDefault();
+          this.form.action = engineLink.dataset.engine;
+          this.searchInput.name = engineLink.dataset.name;
+          toggleActiveClass(document.querySelectorAll('.engine-link'), engineLink);
+        }
+      });
+    }
+  }
+
+  class NavigationManager {
+    constructor() {
+      this.contentContainer = document.querySelector('main'); // 使用 main 标签作为内容容器
+      this.data = null; // 添加数据存储
+      this.initNavigation();
+    }
+
+    initNavigation() {
+      document.addEventListener('click', e => {
+        const navLink = e.target.closest('.nav-link');
+        if (!navLink) return;
+
+        e.preventDefault();
+        this.handleNavigation(navLink);
+      });
+    }
+
+    // 在NavigationManager类的handleNavigation方法中更新逻辑
+
+    handleNavigation(navLink) {
+      try {
+        toggleActiveClass(document.querySelectorAll('.nav-link'), navLink);
+        // 使用category作为section id
+        const targetSection = document.getElementById(navLink.dataset.category); // 修改这里
+        
+        if (!targetSection) {
+          console.warn(`目标部分 "${navLink.dataset.category}" 未找到`); // 更新错误信息
+          return;
+        }
+
+        // 查找并渲染对应分类的内容
+        if (this.data) {
+          // 使用category字段进行匹配
+          const category = this.data.categories.find(cat => cat.category === navLink.dataset.category); // 修改这里
+          if (category) {
+            renderCategory(category);
+          }
+        }
+
+        document.querySelectorAll('section').forEach(section => {
+          section.classList.remove('active');
+        });
+        targetSection.classList.add('active');
+
+        // 获取目标位置并滚动
+        const scrollPosition = this.calculateScrollPosition(targetSection);
+        this.smoothScroll(scrollPosition);
+      } catch (error) {
+        console.error('导航滚动发生错误:', error);
+      }
+    }
+
+    calculateScrollPosition(targetSection) {
+      const viewportHeight = window.innerHeight;
+      const targetOffset = viewportHeight * 0.3;
+      return targetSection.offsetTop - targetOffset;
+    }
+
+    smoothScroll(position) {
+      window.scrollTo({
+        top: position,
+        behavior: 'smooth'
+      });
+    }
+  }
+
   class SpeedTestManager {
     constructor() {
       this.domains = [
@@ -94,216 +202,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // 注释掉 SpeedTestManager 的初始化
-  // new SpeedTestManager();
-  
-  // 工具函数
-  const toggleActiveClass = (elements, activeElement) => {
-    elements.forEach(el => el.classList.remove('active'));
-    activeElement.classList.add('active');
-  };
-
-  // 初始化卡片
-  class CardManager {
-    constructor() {
-      this.initCardLogos();
-      this.initCardEvents();
-      // 添加单例 tooltip
-      this.tooltip = null;
-      this.tooltipTimeout = null;
-    }
-
-    initCardLogos() {
-      document.querySelectorAll('.card[data-logo]').forEach(card => {
-        card.style.setProperty('--logo-url', `url("${card.dataset.logo}")`);
-      });
-    }
-
-    initCardEvents() {
-      // 卡片点击事件保持不变
-      document.addEventListener('click', e => {
-        const card = e.target.closest('.card');
-        if (card) {
-          const link = card.querySelector('a');
-          if (link) window.open(link.href, '_blank');
-        }
-      });
-
-      // 使用 mouseenter 替代 mouseover
-      document.addEventListener('mouseenter', e => {
-        const card = e.target.closest('.card');
-        if (!card) return;
-
-        const description = card.dataset.description;
-        if (!description) return;
-
-        // 清除已有的超时
-        if (this.tooltipTimeout) {
-          clearTimeout(this.tooltipTimeout);
-          this.tooltipTimeout = null;
-        }
-
-        // 创建或重用 tooltip
-        if (!this.tooltip) {
-          this.tooltip = document.createElement('div');
-          this.tooltip.className = 'tooltip';
-        }
-
-        this.tooltip.textContent = description;
-        this.tooltip.style.visibility = 'hidden';
-        this.tooltip.style.opacity = '0';
-        card.appendChild(this.tooltip);
-
-        // 强制重排以确保过渡动画生效
-        void this.tooltip.offsetWidth;
-
-        // 计算位置并显示
-        requestAnimationFrame(() => {
-          const cardRect = card.getBoundingClientRect();
-          const tooltipRect = this.tooltip.getBoundingClientRect();
-          
-          this.tooltip.style.visibility = 'visible';
-          this.tooltip.style.opacity = '1';
-          this.tooltip.style.left = `${(cardRect.width - tooltipRect.width) / 2}px`;
-          this.tooltip.style.top = `${cardRect.height + 8}px`;
-        });
-      }, true);
-
-      // 使用 mouseleave 替代 mouseout
-      document.addEventListener('mouseleave', e => {
-        const card = e.target.closest('.card');
-        if (!card || !this.tooltip) return;
-
-        this.tooltip.style.opacity = '0';
-        
-        // 设置延迟移除
-        this.tooltipTimeout = setTimeout(() => {
-          if (this.tooltip && this.tooltip.parentNode) {
-            this.tooltip.remove();
-          }
-          this.tooltip = null;
-        }, 200);
-      }, true);
-    }
-  }
-
-  // 搜索引擎管理
-  class SearchManager {
-    constructor() {
-      this.form = document.getElementById('search-form');
-      this.searchInput = this.form.querySelector('input');
-      this.initEngineSwitch();
-    }
-
-    initEngineSwitch() {
-      document.addEventListener('click', e => {
-        const engineLink = e.target.closest('.engine-link');
-        if (engineLink) {
-          e.preventDefault();
-          this.form.action = engineLink.dataset.engine;
-          this.searchInput.name = engineLink.dataset.name;
-          toggleActiveClass(document.querySelectorAll('.engine-link'), engineLink);
-        }
-      });
-    }
-  }
-
-  // 导航管理
-  class NavigationManager {
-    constructor() {
-      this.contentContainer = document.querySelector('main'); // 使用 main 标签作为内容容器
-      this.data = null; // 添加数据存储
-      this.initNavigation();
-      this.initSubcategories();
-    }
-
-    initNavigation() {
-      document.addEventListener('click', e => {
-        const navLink = e.target.closest('.nav-link');
-        if (!navLink) return;
-
-        e.preventDefault();
-        this.handleNavigation(navLink);
-      });
-    }
-
-    handleNavigation(navLink) {
-      try {
-        toggleActiveClass(document.querySelectorAll('.nav-link'), navLink);
-        const targetSection = document.getElementById(navLink.dataset.section);
-        
-        if (!targetSection) {
-          console.warn(`目标部分 "${navLink.dataset.section}" 未找到`);
-          return;
-        }
-
-        // 查找并渲染对应分类的内容
-        if (this.data) {
-          const category = this.data.categories.find(cat => cat.id === navLink.dataset.section);
-          if (category) {
-            renderCategory(category);
-          }
-        }
-
-        document.querySelectorAll('section').forEach(section => {
-          section.classList.remove('active');
-        });
-        targetSection.classList.add('active');
-
-        // 获取目标位置
-        const scrollPosition = this.calculateScrollPosition(targetSection);
-
-        // 执行滚动
-        this.smoothScroll(scrollPosition);
-      } catch (error) {
-        console.error('导航滚动发生错误:', error);
-      }
-    }
-
-    calculateScrollPosition(targetSection) {
-      const viewportHeight = window.innerHeight;
-      const targetOffset = viewportHeight * 0.3;
-      return targetSection.offsetTop - targetOffset;
-    }
-
-    smoothScroll(position) {
-      window.scrollTo({
-        top: position,
-        behavior: 'smooth'
-      });
-    }
-
-    initSubcategories() {
-      document.addEventListener('change', e => {
-        const input = e.target.closest('.subcategory-tabs input');
-        if (input) {
-          const section = input.closest('section');
-          const subcatId = input.nextElementSibling.dataset.subcat;
-          section.querySelectorAll('.card-list').forEach(list => {
-            list.style.display = list.id === subcatId ? 'grid' : 'none';
-          });
-        }
-      });
-    }
-  }
-
-  // 初始化所有管理器
+  // 然后再初始化管理器
   new CardManager();
   new SearchManager();
-  window.navigationManager = new NavigationManager(); // 保存实例到全局
-
-  await loadData();  // 加载数据
+  window.navigationManager = new NavigationManager();
+  
+  // 最后加载数据
+  await loadData();
 });
+
+// 工具函数
+const toggleActiveClass = (elements, activeElement) => {
+  elements.forEach(el => el.classList.remove('active'));
+  activeElement.classList.add('active');
+};
 
 // 修改 renderContent 函数
 function renderContent(data) {
   const mainContent = document.getElementById('main-content');
   mainContent.innerHTML = ''; // 清空现有内容
   
-  // 先创建所有分类的容器，但不渲染内容
+  // 使用category字段作为section id
   data.categories.forEach(category => {
     const section = document.createElement('section');
-    section.id = category.id;
+    section.id = category.category; // 修改这里
     mainContent.appendChild(section);
   });
 
@@ -315,7 +237,7 @@ function renderContent(data) {
 
 // 新增 renderCategory 函数
 function renderCategory(category) {
-  const section = document.getElementById(category.id);
+  const section = document.getElementById(category.category); // 修改这里
   
   // 如果已经渲染过，就不重复渲染
   if (section.querySelector('.card-list')) {
@@ -337,9 +259,14 @@ function renderCategory(category) {
 function createCard(cardData) {
   const card = document.createElement('div');
   card.className = 'card';
+  
+  // 创建 logo 元素
+  const logo = document.createElement('div');
+  logo.className = 'card-logo';
   if (cardData.logo) {
-    card.setAttribute('data-logo', cardData.logo);
+    logo.style.backgroundImage = `url("${cardData.logo}")`;
   }
+  card.appendChild(logo);
   
   const link = document.createElement('a');
   link.href = cardData.url;
@@ -347,16 +274,17 @@ function createCard(cardData) {
   link.textContent = cardData.name;
   card.appendChild(link);
   
-  if (cardData.description) {
-    card.setAttribute('data-description', cardData.description);
-  }
-  
   return card;
 }
 
 // 修改加载数据的方式
 async function loadData() {
   try {
+    // 确保 navigationManager 已经初始化
+    if (!window.navigationManager) {
+      throw new Error('NavigationManager 未初始化');
+    }
+    
     console.log('开始加载数据...');
     const response = await fetch('data.json');
     if (!response.ok) {
@@ -381,3 +309,45 @@ async function loadData() {
     document.getElementById('main-content').innerHTML = '<p>加载数据失败，请刷新页面重试</p>';
   }
 }
+
+// 添加辅助函数用于向上查找具有特定类名的父元素
+function findParentByClass(element, className) {
+  while (element) {
+    if (element.classList && element.classList.contains(className)) {
+      return element;
+    }
+    element = element.parentNode;
+  }
+  return null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchForm = document.getElementById('search-form');
+  const currentEngine = document.getElementById('current-engine');
+  const engineOptions = document.querySelectorAll('.engine-option');
+
+  // 切换下拉菜单的显示状态
+  currentEngine.addEventListener("click", (e) => {
+    e.stopPropagation(); // 防止事件冒泡
+    engineDropdown.classList.toggle("active");
+  });
+      
+  // 点击选项时更新当前搜索引擎
+  engineOptions.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // 更新表单动作和输入框名称
+      searchForm.action = option.dataset.engine;
+      const input = searchForm.querySelector('input');
+      input.name = option.dataset.name;
+      
+      // 更新当前选中的引擎显示
+      currentEngine.innerHTML = option.innerHTML;
+      
+      // 更新活动状态
+      engineOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+    });
+  });
+});

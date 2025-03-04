@@ -1,74 +1,89 @@
 {
   "categories": [
     {
-      "id": "category1",
-      "name": "热门推荐",
+      "category": "explore",
+      "name": "探索",
       "items": [
         {
           "name": "DeepSeek",
           "url": "https://chat.deepseek.com/",
-          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/b3/ed/24b3ed69-fb18-9a44-6101-721adc192f2e/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/434x0w.webp",
-          "description": "说明示例"
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/b3/ed/24b3ed69-fb18-9a44-6101-721adc192f2e/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "Qwen",
+          "url": "https://chat.qwenlm.ai/",
+          "logo": "https://assets.alicdn.com/g/qwenweb/qwen-webui-fe/0.0.37/favicon.png"
         },
         {
           "name": "ChatGPT",
           "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/41/a5/e641a506-f5bf-f239-578c-8a159aa4ca67/AppIcon-0-0-1x_U007epad-0-0-0-1-0-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "Claude",
+          "url": "https://claude.ai/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d6/79/ad/d679ad63-4f76-ef0f-62c4-ff39e9f04b25/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
         },
         {
           "name": "Grok",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "Minimax",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "Step",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "元宝",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "豆包",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "文心一言",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
-        },
-        {
-          "name": "Qwen",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
+          "url": "https://grok.com/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4d/1f/ac/4d1faca1-31a7-84a5-41ac-09d651a5e5a0/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/434x0w.webp"
         },
         {
           "name": "Gemini",
-          "url": "https://chatgpt.com/",
-          "logo": "https://cdn.deepseek.com/chat/icon.png",
-          "description": "说明示例"
+          "url": "https://gemini.google.com/app",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/3e/e0/b53ee024-0d8e-3208-1567-adf1411c6ac1/AppIcon-0-0-1x_U007ephone-0-0-0-8-0-0-0-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "MiniMax",
+          "url": "https://chat.minimax.io/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/75/96/67/75966786-2df3-a4e5-e896-e555d9373ba9/AppIcon-0-0-85-220-0-0-4-0-2x.png/434x0w.webp"
+        },
+        {
+          "name": "跃问",
+          "url": "https://yuewen.cn/chats/new",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/26/ee/9d/26ee9d2b-bb9c-fac6-ac86-a43e862da389/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "Kimi",
+          "url": "https://kimi.moonshot.cn/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/43/86/cc/4386ccde-9bc5-acf4-8aa7-5e940a6b3620/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "豆包",
+          "url": "https://www.doubao.com/chat/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/ef/92/a6ef9221-a68e-cb11-609e-025fc35b9014/AppIcon-0-0-1x_U007epad-0-7-0-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "元宝",
+          "url": "https://yuanbao.tencent.com/chat/",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/70/a5/df70a524-098f-b41f-af39-030a1d839cb0/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "Mistral",
+          "url": "https://chat.mistral.ai/chat",
+          "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/aa/50/f5/aa50f529-8de0-8384-9d31-f4d242e6bd11/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
+        },
+        {
+          "name": "硅基流动",
+          "url": "https://cloud.siliconflow.cn/i/rVmVexgG",
+          "logo": "https://framerusercontent.com/images/4li2PjWxZJmoGkzXRMJWU1rJmI.svg"
+        },
+        {
+          "name": "魔搭",
+          "url": "https://www.modelscope.cn/",
+          "logo": "https://g.alicdn.com/sail-web/maas/2.6.5/favicon/128.ico"
+        },
+        {
+          "name": "沉浸式翻译",
+          "url": "https://immersivetranslate.com/?via=william-tang",
+          "logo": "https://s.immersivetranslate.com/static/official-static/img/logo.png"
         }
       ]
     },
     {
-      "id": "category2",
-      "name": "AI工具",
+      "category": "life",
+      "name": "生活",
       "items": [
         {
           "name": "小艺",
@@ -83,8 +98,56 @@
       ]
     },
     {
-      "id": "category3", 
-      "name": "在线工具",
+      "category": "information",
+      "name": "信息",
+      "items": [
+        {
+          "name": "Convertio",
+          "url": "https://convertio.co/zh/",
+          "logo": "https://example.com/favicon.ico"
+        },
+        {
+          "name": "深言达意",
+          "url": "https://www.shenyandayi.com/",
+          "logo": "https://example.com/favicon.ico"
+        }
+      ]
+    },
+    {
+      "category": "entertainment",
+      "name": "娱乐",
+      "items": [
+        {
+          "name": "Convertio",
+          "url": "https://convertio.co/zh/",
+          "logo": "https://example.com/favicon.ico"
+        },
+        {
+          "name": "深言达意",
+          "url": "https://www.shenyandayi.com/",
+          "logo": "https://example.com/favicon.ico"
+        }
+      ]
+    },
+    {
+      "category": "tools",
+      "name": "工具",
+      "items": [
+        {
+          "name": "Convertio",
+          "url": "https://convertio.co/zh/",
+          "logo": "https://example.com/favicon.ico"
+        },
+        {
+          "name": "深言达意",
+          "url": "https://www.shenyandayi.com/",
+          "logo": "https://example.com/favicon.ico"
+        }
+      ]
+    },
+    {
+      "category": "resources",
+      "name": "资源",
       "items": [
         {
           "name": "Convertio",

@@ -5,70 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="keywords" content="新鲜网站导航,前沿网址目录,实用工具集合,精选网站目录,AI资源导航">
-    <meta name="description" content="每日人工审核更新的高质量网站目录，专注收录前沿科技、效率工具、设计资源等实用网站，拒绝信息过载，体验极简导航。">
+    <meta name="description" content="高质量网站目录，专注收录前沿科技、效率工具、设计资源等实用网站，拒绝信息过载，体验极简导航。">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta property="og:title" content="极简导航 | 发现新鲜、前沿、实用的优质网站">
-    <meta property="og:description" content="拒绝臃肿的极简网站目录，精选前沿工具、创意资源和科技网站。">
-    <meta property="og:image" content="https://example.com/og-image.jpg">
-    <meta name="twitter:card" content="summary_large_image">
     <title>极简导航 | 发现新鲜、前沿、实用的优质网站</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" href="styles.css" as="style"></head>
   
   <body>
     <header>
-      <form id="search-form" action="https://www.baidu.com/s?wd=" method="get" target="_blank">
-        <input type="text" name="wd" placeholder="请输入搜索内容">
-        <button type="submit">🔍</button></form>
-      <div id="engine-switch">
-        <a href="#" data-engine="https://www.baidu.com/s?wd=" data-name="wd" class="engine-link active">
-          <img src="https://files.codelife.cc/itab/search/baidu.svg" alt="百度" class="engine-logo">百度</a>
-        <a href="#" data-engine="https://www.google.com/search?q=" data-name="q" class="engine-link">
-          <img src="https://files.codelife.cc/itab/search/google.svg" alt="Google" class="engine-logo">谷歌</a>
-        <a href="#" data-engine="https://www.bing.com/search?q=" data-name="q" class="engine-link">
-          <img src="https://files.codelife.cc/itab/search/bing.svg" alt="Bing" class="engine-logo">Bing</a></div>
+      <form id="search-form" action="" method="get" target="_blank">
+        <div class="search-wrapper">
+          <div class="engine-select">
+            <button type="button" id="current-engine">
+              <img src="images/bing.svg" alt="Bing" class="engine-logo">
+              <span>Bing</span>
+            </button>
+            <div class="engine-dropdown">
+              <a href="#" data-engine="https://www.bing.com/search?q=" data-name="q" class="engine-option active">
+                <img src="images/bing.svg" alt="Bing" class="engine-logo">
+                <span>Bing</span>
+              </a>
+              <a href="#" data-engine="https://www.google.com/search?q=" data-name="q" class="engine-option">
+                <img src="images/google.svg" alt="Google" class="engine-logo">
+                <span>Google</span>
+              </a>
+              <a href="#" data-engine="https://www.perplexity.ai/?q=" data-name="q" class="engine-option">
+                <img src="images/perplexity.svg" alt="Perplexity" class="engine-logo">
+                <span>Perplexity</span>
+              </a>
+            </div>
+          </div>
+          <input type="text" name="wd" placeholder="随意提问">
+          <button type="submit">🤯</button>
+        </div>
+      </form>
     </header>
-    <div class="content-wrapper">
-      <nav id="sidebar">
-        <ul>
-          <li>
-            <a href="#category1" class="nav-link active" data-section="category1">热门推荐</a></li>
-          <li>
-            <a href="#category2" class="nav-link" data-section="category2">AI工具</a></li>
-          <li>
-            <a href="#category3" class="nav-link" data-section="category3">在线工具</a></li>
-          <li>
-            <a href="#category4" class="nav-link" data-section="category4">影音娱乐</a></li>
-          <li>
-            <a href="#category5" class="nav-link" data-section="category5">购物</a></li>
-          <li>
-            <a href="#category6" class="nav-link" data-section="category6">商业</a></li>
-          <li>
-            <a href="#category7" class="nav-link" data-section="category7">博客</a></li>
-          <li>
-            <a href="#category8" class="nav-link" data-section="category8">新闻</a></li>
-          <li>
-            <a href="#category9" class="nav-link" data-section="category9">教育</a></li>
-          <li>
-            <a href="#category10" class="nav-link" data-section="category10">IT</a></li>
-        </ul>
-      </nav>
-      <main id="main-content">
-        <section id="category1" class="active">
-          <div id="subcat1-1" class="card-list">
-            <!-- 卡片将通过 JavaScript 动态渲染 -->
-          </div>
-        </section>
+
+    <nav id="navbar">
+      <ul>
+        <li>
+          <a href="#" class="nav-link active" data-category="explore">探索</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-category="life">生活</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-category="information">信息</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-category="entertainment">娱乐</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-category="tools">工具</a>
+        </li>
+        <li>
+          <a href="#" class="nav-link" data-category="resources">资源</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="main-content">
+      <section id="explore" class="active">
+        <div class="card-list">
+        </div>
+      </section>
       
-        <section id="category2">
-          <div id="subcat2-1" class="card-list">
-            <!-- 卡片将通过 JavaScript 动态渲染 -->
-          </div>
-        </section>
+      <section id="life">
+        <div class="card-list">
+        </div>
+      </section>
       
-        <!-- 其他分类 section 将通过 JavaScript 动态渲染 -->
-      </main>
-    </div>
+      <section id="news">
+        <div class="card-list">
+        </div>
+      </section>
+      
+      <section id="entertainment">
+        <div class="card-list">
+        </div>
+      </section>
+      
+      <section id="tools">
+        <div class="card-list">
+        </div>
+      </section>
+      
+      <section id="resources">
+        <div class="card-list">
+        </div>
+      </section>
+    </main>
+
     <script src="script.js"></script>
   </body>
 
