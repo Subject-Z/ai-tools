@@ -3,7 +3,7 @@
   
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, viewport-fit=cover">
     <meta name="keywords" content="新鲜网站导航,前沿网址目录,实用工具集合,精选网站目录,AI资源导航">
     <meta name="description" content="高质量网站目录，专注收录前沿科技、效率工具、设计资源等实用网站，拒绝信息过载，体验极简导航。">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -13,31 +13,28 @@
   
   <body>
     <header>
-      <form id="search-form" action="" method="get" target="_blank">
-        <div class="search-wrapper">
-          <div class="engine-select">
-            <button type="button" id="current-engine">
-              <img src="images/bing.svg" alt="Bing" class="engine-logo">
+      <form class="search-container">
+        <div class="custom-select">
+          <div class="select-trigger">
+            <img class="engine-icon" alt="">
+          </div>
+          <div class="select-dropdown">
+            <div class="option" data-value="bing">
+              <img src="images/bing.svg" alt="Bing" class="engine-icon">
               <span>Bing</span>
-            </button>
-            <div class="engine-dropdown">
-              <a href="#" data-engine="https://www.bing.com/search?q=" data-name="q" class="engine-option active">
-                <img src="images/bing.svg" alt="Bing" class="engine-logo">
-                <span>Bing</span>
-              </a>
-              <a href="#" data-engine="https://www.google.com/search?q=" data-name="q" class="engine-option">
-                <img src="images/google.svg" alt="Google" class="engine-logo">
-                <span>Google</span>
-              </a>
-              <a href="#" data-engine="https://www.perplexity.ai/?q=" data-name="q" class="engine-option">
-                <img src="images/perplexity.svg" alt="Perplexity" class="engine-logo">
-                <span>Perplexity</span>
-              </a>
+            </div>
+            <div class="option" data-value="google">
+              <img src="images/google.svg" alt="Google" class="engine-icon">
+              <span>Google</span>
+            </div>
+            <div class="option" data-value="perplexity">
+              <img src="images/perplexity.svg" alt="Perplexity" class="engine-icon">
+              <span>Perplexity</span>
             </div>
           </div>
-          <input type="text" name="wd" placeholder="随意提问">
-          <button type="submit">🤯</button>
         </div>
+        <input type="text" class="search-input" placeholder="脑洞一下" />
+        <button type="submit" class="search-submit">🤯</button>
       </form>
     </header>
 

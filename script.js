@@ -1,4 +1,111 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  // 搜索相关代码
+  const searchContainer = document.querySelector('.search-container');
+  const searchInput = document.querySelector('.search-input');
+  const engineSelect = document.querySelector('.search-engine-select');
+  const customSelect = document.querySelector('.custom-select');
+  const selectTrigger = customSelect ? document.querySelector('.select-trigger') : null;
+  const options = customSelect ? document.querySelectorAll('.option') : null;
+  let currentEngine = 'google';
+
+  // 初始化搜索引擎选择器，自动选择第一个引擎
+  function initSearchEngineSelector() {
+    const selectTrigger = document.querySelector('.select-trigger');
+    const firstOption = document.querySelector('.select-dropdown .option');
+    
+    if (selectTrigger && firstOption) {
+      // 获取第一个选项的图标和值
+      const firstIcon = firstOption.querySelector('img');
+      const engineValue = firstOption.getAttribute('data-value');
+      
+      // 设置触发器显示第一个选项的图标
+      const triggerIcon = selectTrigger.querySelector('img');
+      triggerIcon.src = firstIcon.src;
+      triggerIcon.alt = firstIcon.alt;
+      
+      // 为表单设置默认搜索引擎值
+      const searchForm = document.querySelector('.search-container');
+      if (searchForm) {
+        // 可以在表单上设置data属性或添加隐藏字段来存储当前搜索引擎
+        searchForm.setAttribute('data-engine', engineValue);
+      }
+      
+      // 标记第一个选项为已选中
+      firstOption.classList.add('selected');
+    }
+  }
+
+  // 设置搜索引擎图标 - 添加错误检查
+  function updateEngineSelectStyle() {
+    if (!engineSelect) return; // 如果engineSelect不存在，直接返回
+    
+    const selectedOption = engineSelect.options[engineSelect.selectedIndex];
+    if (!selectedOption) return; // 如果没有选中选项，直接返回
+    
+    const logoUrl = selectedOption.dataset.logo;
+    if (logoUrl) {
+      engineSelect.style.backgroundImage = `url(${logoUrl})`;
+    }
+  }
+
+  // 初始化搜索引擎下拉列表样式 - 添加错误检查
+  if (engineSelect) {
+    updateEngineSelectStyle();
+    engineSelect.addEventListener('change', updateEngineSelectStyle);
+  }
+
+  // 自定义下拉菜单逻辑 - 添加错误检查
+  if (customSelect && selectTrigger && options) {
+    // 点击触发器显示/隐藏下拉菜单
+    selectTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      customSelect.classList.toggle('active');
+    });
+
+    // 点击选项更新选择
+    options.forEach(option => {
+      option.addEventListener('click', (e) => {
+        const value = option.dataset.value;
+        const icon = option.querySelector('img')?.src;
+        
+        if (icon && selectTrigger.querySelector('img')) {
+          // 更新触发器图标
+          selectTrigger.querySelector('img').src = icon;
+        }
+        
+        currentEngine = value;
+        
+        // 关闭下拉菜单
+        customSelect.classList.remove('active');
+      });
+    });
+
+    // 点击外部关闭下拉菜单
+    document.addEventListener('click', () => {
+      customSelect.classList.remove('active');
+    });
+  }
+
+  // 搜索表单提交处理 - 添加错误检查
+  if (searchContainer && searchInput) {
+    searchContainer.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim();
+      if (!query) return;
+
+      const searchEngines = {
+        google: 'https://www.google.com/search?q=',
+        bing: 'https://www.bing.com/search?q=',
+        perplexity: 'https://www.perplexity.ai/?q='
+      };
+
+      // 使用自定义下拉菜单或传统select的值
+      const selectedEngine = engineSelect ? engineSelect.value : currentEngine;
+      const searchUrl = searchEngines[selectedEngine] + encodeURIComponent(query);
+      window.open(searchUrl, '_blank');
+    });
+  }
+
   // 首先定义所有类
   class CardManager {
     constructor() {
@@ -20,26 +127,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (card) {
           const link = card.querySelector('a');
           if (link) window.open(link.href, '_blank');
-        }
-      });
-    }
-  }
-
-  class SearchManager {
-    constructor() {
-      this.form = document.getElementById('search-form');
-      this.searchInput = this.form.querySelector('input');
-      this.initEngineSwitch();
-    }
-
-    initEngineSwitch() {
-      document.addEventListener('click', e => {
-        const engineLink = e.target.closest('.engine-link');
-        if (engineLink) {
-          e.preventDefault();
-          this.form.action = engineLink.dataset.engine;
-          this.searchInput.name = engineLink.dataset.name;
-          toggleActiveClass(document.querySelectorAll('.engine-link'), engineLink);
         }
       });
     }
@@ -204,11 +291,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 然后再初始化管理器
   new CardManager();
-  new SearchManager();
   window.navigationManager = new NavigationManager();
   
   // 最后加载数据
   await loadData();
+  initSearchEngineSelector();
 });
 
 // 工具函数
@@ -320,34 +407,3 @@ function findParentByClass(element, className) {
   }
   return null;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const searchForm = document.getElementById('search-form');
-  const currentEngine = document.getElementById('current-engine');
-  const engineOptions = document.querySelectorAll('.engine-option');
-
-  // 切换下拉菜单的显示状态
-  currentEngine.addEventListener("click", (e) => {
-    e.stopPropagation(); // 防止事件冒泡
-    engineDropdown.classList.toggle("active");
-  });
-      
-  // 点击选项时更新当前搜索引擎
-  engineOptions.forEach((option) => {
-    option.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      // 更新表单动作和输入框名称
-      searchForm.action = option.dataset.engine;
-      const input = searchForm.querySelector('input');
-      input.name = option.dataset.name;
-      
-      // 更新当前选中的引擎显示
-      currentEngine.innerHTML = option.innerHTML;
-      
-      // 更新活动状态
-      engineOptions.forEach(opt => opt.classList.remove('active'));
-      option.classList.add('active');
-    });
-  });
-});

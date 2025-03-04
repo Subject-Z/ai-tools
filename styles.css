@@ -1,3 +1,18 @@
+/* 禁用移动设备上的点击高亮效果 */
+a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* CSS 变量定义 - 移到顶部更合理 */
+:root {
+  --background: #fff;
+  --foreground: #171717;
+  --primary: #171717; /* 修正为正确的颜色值格式 */
+  --primary-foreground: #fafafa; /* 修正为正确的颜色值格式 */
+  --input: #e5e5e5; /* 修正为正确的颜色值格式 */
+  --radius: 0.5rem;
+}
+
 /* 基础样式 */
 body {
   background: linear-gradient(180deg, #F3EAE6 0%, #F3EEF6 35%, #EFEEF5 70%, #E6EFF4 100%);
@@ -12,51 +27,63 @@ body {
 /* 头部样式 */
 header {
   position: relative;
-  width: 100%;
+
   height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  color: white;
 }
 
-/* 搜索框样式 */
-#search-form {
-  position: relative;
-  width: clamp(300px, 40vw, 700px); /* 使用clamp限制最小最大宽度 */
-  background: #fff;
-  border-radius: 24px;
-  transition: all 0.3s ease-in-out;
-  opacity: 0.6; /* 添加默认透明度 */
+/* 搜索容器样式 - 使用Grid布局 */
+.search-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* 三列布局：搜索引擎选择器、搜索输入框、搜索按钮 */
+  width: clamp(300px, 40vw, 800px); /* 响应式宽度: 最小300px，最大800px，默认90% */
+  height: 60px;
+  margin: 10vh auto 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
 }
 
-#search-form:hover { 
-  background: #fff;
-  opacity: 1; /* 悬停时不透明 */
+/* 添加搜索容器悬停效果 */
+.search-container:hover {
+  background: rgba(255, 255, 255, 0.6);
 }
 
-#search-form input {
-  width: 100%;
-  padding: 16px 48px 16px 24px;
-  border: none;
-  background: transparent;
-  font-size: 1.2em;
-  outline: none;
+/* 删除无效选择器 */
+
+/* 搜索按钮悬停效果 */
+.search-submit:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 1);
 }
 
-#search-form button {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 5px;
-  border: none;
-  background: none;
-  font-size: 1.8em;
-  line-height: 1;
-  cursor: pointer;
+/* 确保当悬停在搜索按钮上时，搜索容器也会改变 */
+.search-submit:hover .search-container,
+.search-container .search-submit:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* 自定义选择框样式 - 合并重复规则 */
+.select-trigger {
+  opacity: 0.8;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+/* 添加选择触发器悬停效果 */
+.select-trigger:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 1);
+}
+
+/* 确保当悬停在选择触发器上时，搜索容器也会改变 */
+.select-trigger:hover .search-container,
+.search-container .select-trigger:hover {
+  background: rgba(255, 255, 255, 0.6);
 }
 
 /* 搜索引擎切换样式 */
@@ -68,48 +95,43 @@ header {
 
 #engine-switch a {
   display: flex;
-  flex-direction: column; /* 改为纵向排列 */
+  flex-direction: column;
   align-items: center;
-  justify-content: center; /* 居中对齐 */
-  gap: 5px; /* 减小间距 */
+  justify-content: center;
+  gap: 5px;
   padding: 6px 12px;
   color: #333;
   text-decoration: none;
   border-radius: 4px;
   transition: all 0.2s;
-  opacity: 0.6; /* 添加默认透明度 */
+  opacity: 0.6;
 }
 
 #engine-switch a.active {
   font-weight: 500;
-  opacity: 1; /* 激活状态不透明 */
+  opacity: 1;
 }
 
 #engine-switch a:hover {
-  opacity: 1; /* 悬停状态不透明 */
+  opacity: 1;
 }
 
 .engine-logo {
   width: 30px;
   height: 30px;
-  margin-bottom: 3px; /* 可选：在图标下方添加一点额外间距 */
+  margin-bottom: 3px;
 }
 
-/* 导航栏样式 */
+/* 导航栏样式 - 自适应版本 */
 nav {
   position: relative;
-  width: fit-content;  /* 使宽度适应内容 */
-  max-width: 100%;    /* 防止溢出视口 */
-  margin: 0 auto;     /* 居中显示 */
-  overflow-x: auto;   /* 允许水平滚动 */
-  overflow-y: hidden; /* 隐藏垂直滚动条 */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* 隐藏 Webkit 浏览器的滚动条 */
-nav::-webkit-scrollbar {
-  display: none;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 nav ul {
@@ -117,20 +139,20 @@ nav ul {
   padding: 0;
   list-style: none;
   display: flex;
-  width: max-content; /* 确保ul的宽度适应所有子元素 */
+  width: max-content; 
   justify-content: flex-start;
 }
 
 nav ul li {
-  flex: 0 0 auto; /* 防止li被压缩，保持其原始宽度 */
+  flex: 0 0 auto; 
 }
 
 nav a {
-  position: relative; /* 添加相对定位 */
+  position: relative;
   display: block;
-  padding: 12px 30px;
+  padding: clamp(10px, 1.5vw, 12px) clamp(10px, 3vw, 30px);
   color: #000000;
-  font-size: 1.2em;
+  font-size: clamp(1em, 1.2vw, 1.2em);
   text-decoration: none;
   letter-spacing: 0.1em;
   white-space: nowrap;
@@ -138,7 +160,7 @@ nav a {
   opacity: 0.6;
   margin: 0 auto;
   transition: all 0.3s ease;
-  border-bottom: none; /* 移除原来的边框 */
+  border-bottom: none; 
 }
 
 /* 添加伪元素来创建短边框 */
@@ -148,7 +170,7 @@ nav a::after {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 4vw; /* 设置边框长度 */
+  width: 4vw; 
   height: 3px;
   background-color: transparent;
   transition: background-color 0.3s ease;
@@ -167,25 +189,15 @@ nav a.active {
   opacity: 1;
 }
 
-/* 内容区样式 */
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;  /* 修改为适应内容宽度 */
-  min-width: 70vw;    /* 设置最小宽度 */
-  max-width: 90vw;    /* 设置最大宽度 */
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 auto;
-}
-
+/* 自适应主内容区域 */
 main {
   position: relative;
   width: 100%;
-  min-width: 50vw;
-  max-width: 70vw;    
-  margin: 20px auto 0;
+  min-width: clamp(80vw, 90%, 80vw);
+  max-width: clamp(70vw, 80%, 70vw);
+  margin: clamp(10px, 2vw, 20px) auto 0;
   flex: 1;
+  padding: clamp(10px, 1vw, 20px);
 }
 
 section { 
@@ -195,7 +207,6 @@ section {
 section.active {
   display: block;
 }
-
 
 /* 卡片样式 */
 .card {
@@ -208,103 +219,43 @@ section.active {
   border-radius: 8px;
 }
 
+/* 自适应卡片 logo 尺寸 */
 .card-logo {
-  width: 7vw;
-  height: 7vw;
-  min-width: 50px;
-  min-height: 50px;
-  max-width: 70px;
-  max-height: 70px;
-  margin-bottom: 10px;
+  width: clamp(50px, 7vw, 70px);
+  height: clamp(50px, 7vw, 70px);
   border-radius: 15%;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease; /* 添加过渡效果 */
+  transition: transform 0.3s ease; 
 }
 
 .card:hover .card-logo {
   transform: scale(0.8);
 }
 
+/* 自适应卡片文字大小 */
 .card a {
   color: #000000;
-  font-size: 1.2em;
+  font-size: clamp(0.85em, 1vw, 1.2em);
   text-decoration: none;
   z-index: 1;
-  padding-right: 0;
   text-align: center;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-/* 卡片列表网格布局 */
+/* 卡片列表网格布局 - 自适应版本 */
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(clamp(70px, 7vw, 100px), 1fr));
-  gap: 1.5vw;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(70px, 10vw, 100px), 1fr));
+  gap: clamp(20px, 1.5vw, 25px);
+  padding: clamp(10px, 2vw, 20px);
   width: 100%;
-}
-
-/* 响应式布局 */
-@media (max-width: 768px) {
-  nav { 
-    position: relative;
-    width: fit-content;  /* 保持 fit-content */
-    max-width: 100%;    /* 添加最大宽度限制 */
-    margin: 0 auto;     /* 保持居中 */
-    overflow-x: auto;   /* 改回自动滚动 */
-  }
-  
-  nav ul {
-    flex-wrap: nowrap;  /* 移除 wrap，保持单行 */;
-  }
-  
-  nav ul li {
-    flex: 0 0 auto;  /* 防止项目被压缩 */
-    min-width: auto;  /* 移除最小宽度限制 */
-  }
-  
-  nav a {
-    padding: 10px;
-    font-size: 1em;
-  }
-  
-  main {
-    min-width: 85vw;    /* 移动端使用更大的最小宽度 */
-    max-width: 90vw;    /* 移动端使用更大的最大宽度 */
-    margin: 10px auto 0;
-    padding: 10px;
-  }
-  
-  .content-wrapper {
-    width: fit-content;
-    min-width: 90vw;
-  }
-  
-  .card-list {
-    grid-template-columns: repeat(auto-fill, minmax(clamp(40px, 20vw, 50px), 1fr));
-    gap: 10vw; /* 减小间距 */
-    padding: 10px;
-  }
-
-  /* 调整移动端下的卡片logo尺寸 */
-  .card-logo {
-    width: 30vw;  /* 设置固定宽度 */
-    height: 30vw; /* 设置固定高度 */
-    min-width: 20vw;
-    min-height: 20vw;
-  }
-
-  /* 调整移动端下的卡片文字大小 */
-  .card a {
-    font-size: 0.9em;
-  }
-
-  #search-form {
-    width: clamp(280px, 85vw, 400px); /* 移动端适配 */
-  }
 }
 
 /* 搜索引擎选择样式 */
@@ -319,27 +270,27 @@ section.active {
 
 .engine-select {
   position: relative;
-  margin-right: 8px;
 }
 
+/* 修改当前搜索引擎的样式，使其同时显示图标和名称 */
+#current-engine span {
+  display: inline;
+  margin-left: 5px;
+}
+
+/* 调整当前引擎的布局 */
 #current-engine {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px;
+  gap: 8px;
+  padding: 8px 12px;
   border: none;
   background: transparent;
   cursor: pointer;
 }
 
-/* 添加以下样式来隐藏当前引擎的文本 */
-#current-engine span {
-  display: none;  /* 隐藏文本 */
-}
-
-/* 调整图标大小以便更容易识别 */
 #current-engine .engine-logo {
-  width: 20px;  /* 稍微增大图标尺寸 */
+  width: 20px;  
   height: 20px;
 }
 
@@ -349,35 +300,160 @@ section.active {
 }
 
 .engine-dropdown {
+  color: #000000;
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: white;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   z-index: 1000;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 .engine-dropdown.active {
   display: block;
 }
 
+/* 调整下拉选项的布局 */
 .engine-option {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 16px;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 1em;
   text-decoration: none;
-  color: inherit;
+  color: #000000;
   white-space: nowrap;
 }
 
 .engine-option:hover {
-  background: #f5f5f5;
+  background: #000000;
+}
+
+/* 确保下拉列表中的名称正常显示 */
+.engine-option span {
+  display: inline;
+  margin-left: 5px;
 }
 
 .engine-logo {
   width: 16px;
   height: 16px;
+}
+
+/* 搜索输入框 */
+.search-input {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--foreground);
+  font-size: 1.2em;
+}
+
+/* 搜索按钮 */
+.search-submit {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  background: transparent;
+}
+
+/* 调整选择器和提交按钮的样式，使其适合Grid布局 */
+.custom-select, .search-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* 自定义下拉菜单样式 */
+.custom-select {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+/* 自定义下拉菜单触发器样式，确保有足够空间显示文本 */
+.select-trigger {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  box-sizing: border-box;
+  height: auto;
+  transition: opacity 0.2s ease;
+}
+
+.custom-select:hover .select-trigger {
+  opacity: 1;
+}
+
+/* 添加三角形指示器 */
+.select-trigger::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #666;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.engine-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 160px;
+  background: var(--background);
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  visibility: hidden;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-select.active .select-dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.option {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #E6EFF4;
+}
+
+.option span {
+  font-size: 1.2rem;
 }
