@@ -9,9 +9,26 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
     <title>极简导航 | 发现新鲜、前沿、实用的优质网站</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" href="styles.css" as="style"></head>
+    <link rel="preload" href="styles.css" as="style">
+  </head>
   
   <body>
+    <!-- 侧边栏按钮 - 移到 body 下作为独立元素 -->
+    <button id="sidebar-toggle" aria-label="菜单">
+      <span>🤯</span>
+    </button>
+
+    <!-- 侧边栏 - 同样移到 body 下 -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <a href="articles.html" target="_blank">文章</a>
+        <a href="https://docs.qq.com/form/page/DUG91b1BTQXhmUkRu" target="_blank">反馈</a>
+      </div>
+    </div>
+
+    <!-- 添加遮罩层 -->
+    <div class="sidebar-overlay"></div>
+
     <header>
       <form class="search-container">
         <div class="custom-select">
@@ -33,8 +50,8 @@
             </div>
           </div>
         </div>
-        <input type="text" class="search-input" placeholder="脑洞一下" />
-        <button type="submit" class="search-submit">🤯</button>
+        <input type="text" class="search-input" placeholder="投石问路" />
+        <button type="submit" class="search-submit">🎲</button>
       </form>
     </header>
 

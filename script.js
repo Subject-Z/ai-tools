@@ -7,6 +7,53 @@ document.addEventListener('DOMContentLoaded', async () => {
   const selectTrigger = customSelect ? document.querySelector('.select-trigger') : null;
   const options = customSelect ? document.querySelectorAll('.option') : null;
   let currentEngine = 'google';
+  
+  // 添加initSidebar函数定义
+  function initSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarToggle = document.querySelector('#sidebar-toggle');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    
+    if (!sidebar || !sidebarToggle) {
+      console.warn('侧边栏元素未找到', {
+        sidebar: sidebar,
+        sidebarToggle: sidebarToggle
+      });
+      return;
+    }
+
+    // 侧边栏按钮点击事件
+    sidebarToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('active');
+      
+      // 添加日志
+      console.log('侧边栏状态:', {
+        isOpen: sidebar.classList.contains('open'),
+        sidebarClasses: sidebar.className
+      });
+    });
+
+    // 点击遮罩层关闭侧边栏
+    sidebarOverlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('active');
+    });
+
+    // 点击页面其他地方关闭侧边栏
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      }
+    });
+  }
+
+  // 汉堡包菜单功能初始化
+  setTimeout(() => {
+    initSidebar();
+  }, 100);
 
   // 初始化搜索引擎选择器，自动选择第一个引擎
   function initSearchEngineSelector() {
@@ -33,6 +80,36 @@ document.addEventListener('DOMContentLoaded', async () => {
       // 标记第一个选项为已选中
       firstOption.classList.add('selected');
     }
+  }
+
+  // 汉堡包菜单初始化函数
+  function initHamburgerMenu() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuDropdown = document.querySelector('.hamburger-menu .menu-dropdown');
+    
+    if (!menuToggle || !menuDropdown) {
+      console.warn('菜单元素不存在: menuToggle 或 menuDropdown 未找到', {
+        menuToggle: menuToggle,
+        menuDropdown: menuDropdown
+      });
+      return;
+    }
+    
+    // 点击菜单按钮时切换下拉菜单显示
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menuDropdown.classList.toggle('show');
+      console.log('菜单被点击，当前状态：', menuDropdown.classList.contains('show') ? '显示' : '隐藏');
+    });
+    
+    // 点击页面其他区域关闭下拉菜单
+    document.addEventListener('click', function(e) {
+      if (!menuDropdown.contains(e.target) && e.target !== menuToggle) {
+        menuDropdown.classList.remove('show');
+      }
+    });
+    
+    console.log('汉堡包菜单初始化成功');
   }
 
   // 设置搜索引擎图标 - 添加错误检查
@@ -407,3 +484,8 @@ function findParentByClass(element, className) {
   }
   return null;
 }
+
+// 确保DOM加载完成后初始化侧边栏
+document.addEventListener('DOMContentLoaded', () => {
+  initSidebar();
+});
