@@ -13,6 +13,17 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
   --radius: 0.5rem;
 }
 
+* {
+  -webkit-touch-callout: none; /* 禁止长按菜单 */
+  -webkit-user-select: none;   /* 禁止文本选择 */
+  user-select: none;
+}
+
+/* 针对图片单独处理 */
+img {
+  pointer-events: none;        /* 禁止图片长按菜单 */
+}
+
 html {
   overflow-x: hidden;
   height: 100%;
