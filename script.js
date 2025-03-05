@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const customSelect = document.querySelector('.custom-select');
   const selectTrigger = customSelect ? document.querySelector('.select-trigger') : null;
   const options = customSelect ? document.querySelectorAll('.option') : null;
-  let currentEngine = 'google';
+  let currentEngine = 'bing';
   
   // 删除重复定义的initSidebar函数
 
