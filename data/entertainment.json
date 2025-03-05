@@ -1,0 +1,21 @@
+{
+  "category": "entertainment",
+  "name": "娱乐",
+  "subcategories": [
+    {
+      "name": "动漫",
+      "items": [
+        {
+          "name": "AGE动漫",
+          "url": "https://www.agedm.org",
+          "logo": "https://cdn.aiqingyu1314.com/age/statics/images/avatar.jpg?v=2025011401"
+        },
+        {
+          "name": "次元城动画",
+          "url": "https://www.cycani.org/",
+          "logo": "https://www.cycani.org/upload/site/20240319-1/67656e504da1f0c61513066dcea769fb.png"
+        }
+      ]
+    }
+  ]
+}

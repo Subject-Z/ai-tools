@@ -19,11 +19,6 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
   user-select: none;
 }
 
-/* 针对图片单独处理 */
-img {
-  pointer-events: none;        /* 禁止图片长按菜单 */
-}
-
 html {
   overflow-x: hidden;
   height: 100%;
@@ -44,6 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* 头部样式 */
@@ -217,7 +213,7 @@ nav a.active {
 main {
   position: relative;
   width: 95%;
-  margin: clamp(20px, 3vh, 35px) auto 0;
+  margin: clamp(20px, 3vh, 35px) auto 10vh;
   max-width: 100vw;
   padding: 0 clamp(150px, 15vw, 400px) 0;
   flex: 1;
@@ -244,7 +240,7 @@ section.active {
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* 自适应卡片 logo 尺寸 */
@@ -259,45 +255,8 @@ section.active {
   transition: transform 0.3s ease; 
 }
 
-/* 修改 tooltip 样式为底部显示，白底黑字 */
-.card-tooltip {
-  position: absolute;
-  top: 100%;  /* 改为顶部的100%，即卡片的底部 */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.9); /* 改为白色背景 */
-  color: #000000; /* 改为黑色文字 */
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 1.2em;
-  white-space: nowrap; /* 保持 nowrap，使内容不换行 */
-  max-width: none; /* 保持无最大宽度限制 */
-  text-align: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 100;
-  pointer-events: none;
-  margin-top: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 添加阴影提升视觉效果 */
-}
-
-/* 修改小三角形指示器颜色为白色 */
-.card-tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: 100%;  /* 保持在 tooltip 的顶部 */
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: transparent transparent rgba(255, 255, 255, 0.9) transparent;  /* 修改为白色 */
-}
-
-/* 悬停时显示 tooltip */
-.card:hover .card-tooltip {
-  visibility: visible;
-  opacity: 1;
+.card-logo:hover {
+  transform: scale(0.75);
 }
 
 /* 自适应卡片文字大小 */
@@ -319,9 +278,36 @@ section.active {
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 13%, 100px), 1fr));
-  row-gap: clamp(30px, 2vw, 40px);
+  row-gap: clamp(10px, 1.5vw, 25px);
   column-gap: clamp(20px, 1vw, 25px);
-  }
+  position: relative;
+}
+
+/* 子分类分隔线样式 - 只显示一半但占据整行 */
+.subcategory-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0 5px;
+  grid-column: 1 / -1; /* 让分隔线占据整行 */
+}
+
+.subcategory-divider hr {
+  flex-grow: 0; /* 不再自动伸展 */
+  width: 15%; /* 只占一半宽度 */
+  border: none;
+  height: 1px;
+  background-color: rgba(125, 125, 125, 0.2);
+  margin: 0;
+}
+
+.subcategory-divider span {
+  padding: 0 15px;
+  font-weight: 500;
+  color: rgba(75, 75, 75, 0.7);
+  white-space: nowrap;
+}
 
 /* 搜索引擎选择样式 */
 .search-wrapper {
@@ -525,7 +511,7 @@ section.active {
 }
 
 #sidebar-toggle {
-  position: fixed;
+  position: absolute;
   top: 2vh;
   right: 2vw;
   background: none;

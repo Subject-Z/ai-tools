@@ -1,0 +1,21 @@
+{
+    "category": "life",
+    "name": "生活",
+    "subcategories": [
+        {
+            "name": "在线购物",
+            "items": [
+                {
+                    "name": "淘宝",
+                    "url": "https://www.taobao.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/71/56/c9715664-e749-418b-9c5a-9a2028ee0fa9/AppIcon-0-0-1x_U007emarketing-0-9-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "京东",
+                    "url": "https://app.suno.ai/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e1/ca/99/e1ca99d4-e8a6-e24b-4a05-c567bde6c932/AppIcon-0-0-1x_U007epad-0-10-0-0-85-220.png/434x0w.webp"
+                }
+            ]
+        }
+    ]
+}

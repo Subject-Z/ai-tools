@@ -169,13 +169,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (searchContainer && searchInput) {
     searchContainer.addEventListener('submit', (e) => {
       e.preventDefault();
-      const query = searchInput.value.trim();
-      if (!query) return;
+      let query = searchInput.value.trim();
+      if (!query) {
+        // 如果搜索框为空，使用placeholder的值
+        query = searchInput.placeholder;
+      }
 
       const searchEngines = {
         google: 'https://www.google.com/search?q=',
         bing: 'https://www.bing.com/search?q=',
-        perplexity: 'https://www.perplexity.ai/?q='
+        perplexity: 'https://www.perplexity.ai/?q=',
       };
 
       // 使用自定义下拉菜单或传统select的值
@@ -443,9 +446,9 @@ function renderContent(data) {
   }
 }
 
-// 新增 renderCategory 函数
+// 修改 renderCategory 函数以支持子分类
 function renderCategory(category) {
-  const section = document.getElementById(category.category); // 修改这里
+  const section = document.getElementById(category.category);
   
   // 如果已经渲染过，就不重复渲染
   if (section.querySelector('.card-list')) {
@@ -455,26 +458,41 @@ function renderCategory(category) {
   const cardList = document.createElement('div');
   cardList.className = 'card-list';
   
-  // 渲染卡片
-  category.items.forEach(item => {
-    cardList.appendChild(createCard(item));
-  });
+  // 检查是否有子分类
+  if (category.subcategories && category.subcategories.length > 0) {
+    // 渲染子分类
+    category.subcategories.forEach(subcategory => {
+      // 添加子分类分隔线
+      const divider = createSubcategoryDivider(subcategory.name);
+      cardList.appendChild(divider);
+      
+      // 渲染当前子分类下的所有卡片
+      subcategory.items.forEach(item => {
+        cardList.appendChild(createCard(item));
+      });
+    });
+  } else if (category.items && category.items.length > 0) {
+    // 兼容旧结构：没有子分类，直接渲染卡片
+    category.items.forEach(item => {
+      cardList.appendChild(createCard(item));
+    });
+  }
   
   section.appendChild(cardList);
+}
+
+// 创建子分类分隔线的函数
+function createSubcategoryDivider(name) {
+  const divider = document.createElement('div');
+  divider.className = 'subcategory-divider';
+  divider.innerHTML = `<hr><span>${name}</span><hr>`;
+  return divider;
 }
 
 // 创建单个卡片
 function createCard(cardData) {
   const card = document.createElement('div');
   card.className = 'card';
-  
-  // 添加tooltip
-  if (cardData.description) {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'card-tooltip';
-    tooltip.textContent = cardData.description;
-    card.appendChild(tooltip);
-  }
   
   // 创建 logo 元素
   const logo = document.createElement('div');
@@ -503,12 +521,45 @@ async function loadData() {
     }
     
     console.log('开始加载数据...');
-    const response = await fetch('data.json');
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    
+    // 先加载索引文件
+    const indexResponse = await fetch('data/index.json');
+    if (!indexResponse.ok) {
+      throw new Error(`索引文件加载失败! status: ${indexResponse.status}`);
     }
-    const data = await response.json();
-    console.log('成功加载数据:', data);
+    const index = await indexResponse.json();
+    console.log('成功加载索引:', index);
+    
+    // 并行加载所有类别文件
+    const categoriesPromises = index.categories.map(async (category) => {
+      try {
+        const response = await fetch(`data/${category}.json`);
+        if (!response.ok) {
+          console.warn(`加载类别 ${category} 失败: ${response.status}`);
+          return null;
+        }
+        return await response.json();
+      } catch (err) {
+        console.error(`加载类别 ${category} 时出错:`, err);
+        return null;
+      }
+    });
+    
+    const categoriesData = await Promise.all(categoriesPromises);
+    
+    // 过滤掉加载失败的类别
+    const validCategories = categoriesData.filter(category => category !== null);
+    
+    if (validCategories.length === 0) {
+      throw new Error('没有成功加载任何类别数据');
+    }
+    
+    console.log('成功加载数据:', validCategories);
+    
+    // 创建与原始数据结构兼容的对象
+    const data = {
+      categories: validCategories
+    };
     
     // 保存数据到 NavigationManager 实例
     window.navigationManager.data = data;
