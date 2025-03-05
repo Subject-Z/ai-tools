@@ -468,10 +468,19 @@ function createCard(cardData) {
   const card = document.createElement('div');
   card.className = 'card';
   
+  // 添加tooltip
+  if (cardData.description) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'card-tooltip';
+    tooltip.textContent = cardData.description;
+    card.appendChild(tooltip);
+  }
+  
   // 创建 logo 元素
   const logo = document.createElement('div');
   logo.className = 'card-logo';
   if (cardData.logo) {
+    // 直接使用原始 URL 而不使用缓存系统
     logo.style.backgroundImage = `url("${cardData.logo}")`;
   }
   card.appendChild(logo);
