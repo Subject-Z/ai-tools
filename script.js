@@ -1,3 +1,45 @@
+// 将initSidebar函数移到全局作用域
+function initSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarToggle = document.querySelector('#sidebar-toggle');
+  const sidebarOverlay = document.querySelector('.sidebar-overlay');
+  
+  if (!sidebar || !sidebarToggle) {
+    console.warn('侧边栏元素未找到', {
+      sidebar: sidebar,
+      sidebarToggle: sidebarToggle
+    });
+    return;
+  }
+
+  // 侧边栏按钮点击事件
+  sidebarToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+    
+    // 添加日志
+    console.log('侧边栏状态:', {
+      isOpen: sidebar.classList.contains('open'),
+      sidebarClasses: sidebar.className
+    });
+  });
+
+  // 点击遮罩层关闭侧边栏
+  sidebarOverlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('active');
+  });
+
+  // 点击页面其他地方关闭侧边栏
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('active');
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   // 搜索相关代码
   const searchContainer = document.querySelector('.search-container');
@@ -8,47 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const options = customSelect ? document.querySelectorAll('.option') : null;
   let currentEngine = 'google';
   
-  // 添加initSidebar函数定义
-  function initSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarToggle = document.querySelector('#sidebar-toggle');
-    const sidebarOverlay = document.querySelector('.sidebar-overlay');
-    
-    if (!sidebar || !sidebarToggle) {
-      console.warn('侧边栏元素未找到', {
-        sidebar: sidebar,
-        sidebarToggle: sidebarToggle
-      });
-      return;
-    }
-
-    // 侧边栏按钮点击事件
-    sidebarToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sidebar.classList.toggle('open');
-      sidebarOverlay.classList.toggle('active');
-      
-      // 添加日志
-      console.log('侧边栏状态:', {
-        isOpen: sidebar.classList.contains('open'),
-        sidebarClasses: sidebar.className
-      });
-    });
-
-    // 点击遮罩层关闭侧边栏
-    sidebarOverlay.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-      sidebarOverlay.classList.remove('active');
-    });
-
-    // 点击页面其他地方关闭侧边栏
-    document.addEventListener('click', (e) => {
-      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-        sidebar.classList.remove('open');
-        sidebarOverlay.classList.remove('active');
-      }
-    });
-  }
+  // 删除重复定义的initSidebar函数
 
   // 汉堡包菜单功能初始化
   setTimeout(() => {
@@ -279,13 +281,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     constructor() {
       this.domains = [
         'https://ai-tools-1i5.pages.dev',
-        'https://subject-z.github.io/ai-tools'
+        'https://subject-z.github.io/ai-tools',
+        'http://127.0.0.1:5500'
       ];
-      this.healthCheckFile = '/healthcheck.txt';
+      // 不再使用专门的健康检查文件
       this.cacheKey = 'preferredDomain';
       this.cacheExpiry = 1000 * 60 * 60; // 1小时过期
       
-      // this.init(); // 注释掉初始化调用
+      this.init();
     }
 
     async init() {
@@ -297,7 +300,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       // 执行测速
-      this.testAllDomains();
+      this.raceAllDomains();
     }
 
     getCachedDomain() {
@@ -322,46 +325,87 @@ document.addEventListener('DOMContentLoaded', async () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeout);
         
-        const start = performance.now();
-        const response = await fetch(`${domain}${this.healthCheckFile}`, {
-          signal: controller.signal
+        // 直接请求域名根路径
+        const response = await fetch(domain, {
+          signal: controller.signal,
+          method: 'HEAD'  // 只获取头信息，减少数据传输
         });
         
         clearTimeout(timeoutId);
-        
-        if (!response.ok) return { domain, time: Infinity };
-        
-        const time = performance.now() - start;
-        return { domain, time };
+        return response.ok;
       } catch {
-        return { domain, time: Infinity };
+        return false;
       }
     }
 
-    async testAllDomains() {
+    async raceAllDomains() {
       try {
-        const results = await Promise.all(
-          this.domains.map(domain => this.testDomain(domain))
-        );
+        console.log('开始域名竞速测试...');
+        
+        // 创建一个Promise.race竞赛，谁先完成谁就赢
+        const domainPromises = this.domains.map(domain => {
+          return new Promise(async (resolve) => {
+            try {
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
+              
+              const start = performance.now();
+              // 直接请求域名根路径，使用HEAD方法减少数据传输
+              const response = await fetch(domain, {
+                signal: controller.signal,
+                method: 'HEAD'
+              });
+              clearTimeout(timeoutId);
+              
+              if (response.ok) {
+                const time = performance.now() - start;
+                console.log(`域名 ${domain} 响应成功，耗时: ${time.toFixed(2)}ms`);
+                resolve({ domain, time });
+              } else {
+                // 不解析失败的请求
+                console.log(`域名 ${domain} 响应失败，状态码: ${response.status}`);
+              }
+            } catch (error) {
+              console.log(`域名 ${domain} 请求失败: ${error.message}`);
+              // 不解析出错的请求
+            }
+          });
+        });
 
-        const validResults = results.filter(r => r.time !== Infinity);
-        if (validResults.length === 0) return;
+        // 添加一个超时Promise，确保有最终结果
+        const timeoutPromise = new Promise(resolve => {
+          setTimeout(() => {
+            resolve({ domain: this.domains[0], time: Infinity, isTimeout: true });
+          }, 6000); // 6秒后如果都没响应，使用默认域名
+        });
 
-        // 选择最快的域名
-        const fastest = validResults.reduce((a, b) => a.time < b.time ? a : b);
+        // 将所有Promise合并到一个race中
+        const winner = await Promise.race([
+          ...domainPromises,
+          timeoutPromise
+        ]);
+
+        // 如果是因为超时导致的结果，记录日志但不做跳转
+        if (winner.isTimeout) {
+          console.log('所有域名测试均未成功，使用默认域名');
+          return;
+        }
+
+        console.log(`获胜的域名是: ${winner.domain}，耗时: ${winner.time.toFixed(2)}ms`);
         
         // 保存到缓存
         localStorage.setItem(this.cacheKey, JSON.stringify({
-          domain: fastest.domain,
+          domain: winner.domain,
           timestamp: Date.now()
         }));
 
         // 如果当前域名不是最快的，则跳转
-        if (!window.location.href.startsWith(fastest.domain)) {
-          window.location.href = fastest.domain;
+        if (!window.location.href.startsWith(winner.domain)) {
+          console.log(`跳转到更快的域名: ${winner.domain}`);
+          window.location.href = winner.domain;
         }
       } catch (error) {
-        console.error('域名测速失败:', error);
+        console.error('域名竞速测试失败:', error);
       }
     }
   }
@@ -484,8 +528,3 @@ function findParentByClass(element, className) {
   }
   return null;
 }
-
-// 确保DOM加载完成后初始化侧边栏
-document.addEventListener('DOMContentLoaded', () => {
-  initSidebar();
-});

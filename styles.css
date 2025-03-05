@@ -13,10 +13,18 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
   --radius: 0.5rem;
 }
 
+html {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+
 /* 基础样式 */
 body {
   background: linear-gradient(180deg, #F3EAE6 0%, #F3EEF6 35%, #EFEEF5 70%, #E6EFF4 100%);
+  background-attachment: fixed;
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   min-height: 100vh;
   width: 100%;
@@ -37,13 +45,11 @@ header {
   width: 100%; /* 确保宽度占满 */
 }
 
-/* 搜索容器样式 - 使用Grid布局 */
 .search-container {
   display: grid;
-  grid-template-columns: auto 1fr auto; /* 三列布局：搜索引擎选择器、搜索输入框、搜索按钮 */
-  width: clamp(300px, 40vw, 800px); /* 响应式宽度: 最小300px，最大800px */
+  grid-template-columns: auto 1fr auto;
+  width: clamp(300px, 90%, 800px);
   height: 60px;
-  margin: 10vh auto 0; /* 保留现有的居中方式 */
   background: rgba(255, 255, 255, 0.3);
   border-radius: var(--radius);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -123,17 +129,16 @@ header {
   margin-bottom: 3px;
 }
 
-/* 导航栏样式 - 自适应版本 */
 nav {
   position: relative;
-  width: 100%; /* 修改为100%宽度 */
+  width: 100%;
   margin: 0 auto;
   overflow-x: auto;
   overflow-y: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  display: flex; /* 添加flex布局 */
-  justify-content: center; /* 水平居中 */
+  display: flex;
+  justify-content: center;
 }
 
 nav ul {
@@ -195,7 +200,9 @@ nav a.active {
 main {
   position: relative;
   width: clamp(400px, 90%, 1200px);
-  margin: clamp(20px, 3vh, 35px) auto 0;
+  margin: clamp(15px, 10%, 35px) auto 0;
+  max-width: 100vw;
+  padding: 0 5% 0;
   flex: 1;
   box-sizing: border-box;
 }
@@ -253,7 +260,7 @@ section.active {
 /* 卡片列表网格布局 - 自适应版本 */
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(clamp(70px, 10vw, 100px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 10%, 100px), 1fr));
   row-gap: clamp(30px, 2vw, 40px);
   column-gap: clamp(20px, 1vw, 30px);
   width: 100%;
