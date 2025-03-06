@@ -282,30 +282,28 @@ section.active {
   position: relative;
 }
 
-/* 子分类分隔线样式 - 只显示一半但占据整行 */
-.subcategory-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 3vh 0 1vh;
-  grid-column: 1 / -1; /* 让分隔线占据整行 */
+/* 半透明白色背景 */
+.subcategory-section {
+  grid-column: 1 / -1; /* 让背景占据整行 */
+  background-color: rgba(255, 255, 255, 0.4); /* 半透明白色背景 */
+  border-radius: 12px; /* 圆角效果 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 轻微阴影 */
+  padding: 20px 15px; /* 内边距 */
+  margin-bottom: 15px; /* 各子分类间距 */
 }
 
-.subcategory-divider hr {
-  flex-grow: 0; /* 不再自动伸展 */
-  width: 15%; /* 只占一半宽度 */
-  border: none;
-  height: 1px;
-  background-color: rgba(125, 125, 125, 0.2);
-  margin: 0;
+.subcategory-title {
+  font-weight: 400;
+  color: rgba(60, 60, 60, 0.8);
+  padding-bottom: 10px;
+  text-align: center;
+  margin-top: 0;
 }
 
-.subcategory-divider span {
-  padding: 0 15px;
-  font-weight: 500;
-  color: rgba(75, 75, 75, 0.7);
-  white-space: nowrap;
+.subcategory-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 13%, 100px), 1fr));
+  gap: clamp(10px, 1vw, 25px);
 }
 
 /* 搜索引擎选择样式 */
@@ -520,6 +518,20 @@ section.active {
   align-items: center;
   justify-content: center;
   z-index: 1001;
+  transform-origin: bottom center; /* 设置旋转中心点 */
+  /* 删除默认动画 */
+  transition: transform 0.3s ease;
+}
+
+/* 添加摇晃动画关键帧 */
+@keyframes sidebarShake {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+/* 当鼠标悬停时应用动画 */
+#sidebar-toggle:hover {
+  animation: sidebarShake 0.3s infinite ease-in-out;
 }
 
 /* 侧边栏样式 */

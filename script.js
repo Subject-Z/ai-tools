@@ -179,6 +179,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         google: 'https://www.google.com/search?q=',
         bing: 'https://www.bing.com/search?q=',
         perplexity: 'https://www.perplexity.ai/?q=',
+        Genspark: 'https://www.genspark.ai/search?query=',
+        ThinkAny: 'https://thinkany.so/zh/search?q=',
       };
 
       // 使用自定义下拉菜单或传统select的值
@@ -280,112 +282,56 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  class SpeedTestManager {
-    constructor() {
-      this.domains = [
-        'https://ai-tools-1i5.pages.dev',
-        'https://subject-z.github.io/ai-tools', 
-        'http://127.0.0.1:5500'
-      ];
-      this.cacheKey = 'preferredDomain';
-      this.cacheExpiry = 1000 * 60 * 60; // 1小时过期
-      
-      this.init();
+  // 域名切换功能 - 简化版
+  function initDomainFallback() {
+    // 避免循环跳转
+    if (new URLSearchParams(window.location.search).get('from') === 'fallback') {
+      console.log("已从备用站点跳转，不再重复操作");
+      return;
     }
-
-    async init() {
-      // 检查缓存
-      const cached = this.getCachedDomain();
-      if (cached) {
-        const isValid = await this.testDomain(cached.domain);
-        if (isValid) return;
-      }
-
-      // 并行测试所有域名
-      await this.raceDomains();
+  
+    // 定义域名映射关系
+    const DOMAIN_MAP = {
+      "ai-tools-1i5.pages.dev": "https://subject-z.github.io/ai-tools",
+      "subject-z.github.io": "https://ai-tools-1i5.pages.dev",
+      "127.0.0.1": null // 本地开发环境不跳转
+    };
+    
+    const currentHostname = window.location.hostname;
+    // 从域名映射中获取当前站点的备用站点
+    const fallbackDomain = DOMAIN_MAP[currentHostname];
+    
+    if (!fallbackDomain) {
+      console.log("当前为开发环境或无备用域名，跳过可用性检测");
+      return;
     }
-
-    getCachedDomain() {
-      const cached = localStorage.getItem(this.cacheKey);
-      if (!cached) return null;
-
-      try {
-        const data = JSON.parse(cached);
-        if (Date.now() - data.timestamp > this.cacheExpiry) {
-          localStorage.removeItem(this.cacheKey);
-          return null;
-        }
-        return data;
-      } catch {
-        localStorage.removeItem(this.cacheKey);
-        return null;
-      }
-    }
-
-    async testDomain(domain, timeout = 2000) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-        
-        const response = await fetch(domain, {
-          signal: controller.signal,
-          method: 'HEAD'  // 只获取头信息，减少数据传输
-        });
-        
-        clearTimeout(timeoutId);
-        return response.ok;
-      } catch {
-        return false;
-      }
-    }
-
-    async raceDomains() {
-      console.log('并行测试所有域名...');
-      
-      const controller = new AbortController();
-      const signal = controller.signal;
-      
-      // 为每个域名创建一个请求
-      const promises = this.domains.map(domain => 
-        fetch(domain, { signal, method: 'HEAD' })
-          .then(() => domain)
-          .catch(() => null)
-      );
-      
-      // 添加整体超时
-      const timeout = new Promise(resolve => 
-        setTimeout(() => resolve(null), 3000)
-      );
-      
-      try {
-        // 使用 Promise.race 获取最快响应的域名
-        const fastestDomain = await Promise.race([...promises, timeout]);
-        
-        // 中止其他所有请求
-        controller.abort();
-        
-        if (fastestDomain) {
-          console.log(`最快可用域名: ${fastestDomain}`);
-          
-          // 保存到缓存
-          localStorage.setItem(this.cacheKey, JSON.stringify({
-            domain: fastestDomain,
-            timestamp: Date.now()
-          }));
-          
-          // 如果当前域名不是最快域名，则跳转
-          if (!window.location.href.startsWith(fastestDomain)) {
-            console.log(`跳转到最快域名: ${fastestDomain}`);
-            window.location.href = fastestDomain;
-          }
-        } else {
-          console.log('所有域名均不可用，保持当前域名');
-        }
-      } catch (error) {
-        console.error('测试域名时出错:', error);
-      }
-    }
+    
+    // 设置超时，确保不会因网络问题永久挂起
+    const timeoutId = setTimeout(() => {
+      console.log("当前站点响应超时，跳转到备用站点");
+      window.location.href = `${fallbackDomain}?from=fallback`;
+    }, 3000);
+    
+    // 检测当前站点可用性
+    fetch(`/favicon.ico?t=${Date.now()}`, { 
+      method: 'HEAD',
+      mode: 'no-cors',
+      cache: 'no-store'
+    })
+    .then(() => {
+      // 当前站点可用，清除超时
+      clearTimeout(timeoutId);
+      console.log("当前站点可用，无需跳转");
+    })
+    .catch(error => {
+      // 当前站点不可用，跳转到备用站点
+      console.error("当前站点不可用，跳转到备用站点:", error);
+      window.location.href = `${fallbackDomain}?from=fallback`;
+    });
   }
+  
+  // 在DOMContentLoaded事件中调用
+  initDomainFallback();
 
   // 然后再初始化管理器
   new CardManager();
@@ -420,7 +366,7 @@ function renderContent(data) {
   }
 }
 
-// 修改 renderCategory 函数以支持子分类
+// 修改 renderCategory 函数，将子分类内容包裹在半透明背景中
 function renderCategory(category) {
   const section = document.getElementById(category.category);
   
@@ -436,14 +382,27 @@ function renderCategory(category) {
   if (category.subcategories && category.subcategories.length > 0) {
     // 渲染子分类
     category.subcategories.forEach(subcategory => {
-      // 添加子分类分隔线
-      const divider = createSubcategoryDivider(subcategory.name);
-      cardList.appendChild(divider);
+      // 创建子分类区域容器
+      const subcategorySection = document.createElement('div');
+      subcategorySection.className = 'subcategory-section';
+      
+      // 添加子分类标题
+      const subcategoryTitle = document.createElement('h3');
+      subcategoryTitle.className = 'subcategory-title';
+      subcategoryTitle.textContent = subcategory.name;
+      subcategorySection.appendChild(subcategoryTitle);
+      
+      // 创建内容容器
+      const subcategoryContent = document.createElement('div');
+      subcategoryContent.className = 'subcategory-content';
       
       // 渲染当前子分类下的所有卡片
       subcategory.items.forEach(item => {
-        cardList.appendChild(createCard(item));
+        subcategoryContent.appendChild(createCard(item));
       });
+      
+      subcategorySection.appendChild(subcategoryContent);
+      cardList.appendChild(subcategorySection);
     });
   } else if (category.items && category.items.length > 0) {
     // 兼容旧结构：没有子分类，直接渲染卡片
@@ -453,14 +412,6 @@ function renderCategory(category) {
   }
   
   section.appendChild(cardList);
-}
-
-// 创建子分类分隔线的函数
-function createSubcategoryDivider(name) {
-  const divider = document.createElement('div');
-  divider.className = 'subcategory-divider';
-  divider.innerHTML = `<hr><span>${name}</span><hr>`;
-  return divider;
 }
 
 // 创建单个卡片

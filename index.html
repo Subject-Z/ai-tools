@@ -9,17 +9,23 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="William">
   
+  <!-- Favicon 图标 -->
+  <link rel="icon" href="images/favicon.webp" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.webp">
+  <meta name="theme-color" content="#ffffff">
+  
   <!-- Open Graph 标签 -->
   <meta property="og:title" content="AI工具箱 | 实用工具合集">
   <meta property="og:description" content="汇集AI模型、生活服务、信息资讯、娱乐平台、实用工具与素材资源，为用户提供高效便捷的网络探索体验。">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:image" content="https://chat.deepseek.com/deepseek-chat.jpeg">
   
   <!-- Twitter 卡片标签 -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AI工具箱 | 实用工具合集">
   <meta name="twitter:description" content="汇集AI模型、生活服务、信息资讯、娱乐平台、实用工具与素材资源，为用户提供高效便捷的网络探索体验。">
-  <meta name="twitter:image" content="images/twitter-image.jpg">
+  <meta name="twitter:image" content="https://chat.deepseek.com/deepseek-chat.jpeg">
   
   <title>AI工具箱 | 实用工具合集</title>
   <link rel="stylesheet" href="styles.css">
@@ -27,9 +33,9 @@
 </head>
   
   <body>
-    <!-- 侧边栏按钮 - 移到 body 下作为独立元素 -->
+    <!-- 侧边栏按钮 -->
     <button id="sidebar-toggle" aria-label="菜单">
-      <span>🤯</span>
+      <span>🐣</span>
     </button>
 
     <!-- 侧边栏 - 同样移到 body 下 -->
@@ -62,6 +68,14 @@
                 <img src="images/perplexity.webp" class="engine-icon">
                 <span>Perplexity</span>
             </div>
+            <div class="option" data-value="Genspark">
+                <img src="images/genspark.webp" class="engine-icon">
+                <span>Genspark</span>
+            </div>
+            <div class="option" data-value="ThinkAny">
+              <img src="images/thinkany.webp" class="engine-icon">
+              <span>ThinkAny</span>
+          </div>
           </div>
         </div>
         <input type="text" class="search-input" placeholder="如何赚一个亿？" />
@@ -85,9 +99,6 @@
         </li>
         <li>
           <a href="#" class="nav-link" data-category="tools">工具</a>
-        </li>
-        <li>
-          <a href="#" class="nav-link" data-category="resources">资源</a>
         </li>
       </ul>
     </nav>
@@ -118,10 +129,6 @@
         </div>
       </section>
       
-      <section id="resources">
-        <div class="card-list">
-        </div>
-      </section>
     </main>
 
     <script src="script.js"></script>

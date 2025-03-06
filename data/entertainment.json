@@ -16,6 +16,21 @@
           "logo": "/images/cycani.webp"
         }
       ]
+    },
+    {
+      "name": "音乐",
+      "items": [
+        {
+          "name": "LX Music",
+          "url": "https://lxmusic.toside.cn/",
+          "logo": "/images/lxmusic.webp"
+        },
+        {
+          "name": "MusicFree",
+          "url": "https://musicfree.catcat.work/",
+          "logo": "/images/musicfree.webp"
+        }
+      ]
     }
   ]
 }

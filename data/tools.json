@@ -3,18 +3,33 @@
     "name": "工具",
     "subcategories": [
         {
-            "name": "文件处理",
+            "name": "在线工具",
             "items": [
                 {
                     "name": "Convertio",
                     "url": "https://convertio.co/zh/",
                     "logo": "/images/convertio.webp"
-                }
-            ]
-        },
-        {
-            "name": "写作辅助",
-            "items": [
+                },
+                {
+                    "name": "Squoosh",
+                    "url": "https://squoosh.app/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/48/29/9c/48299c0f-956c-f08f-ba5c-4f3032cc2416/icon.png/434x0w.webp"
+                },
+                {
+                    "name": "文叔叔",
+                    "url": "https://www.wenshushu.cn/",
+                    "logo": "https://www.wenshushu.cn/favicon.ico"
+                },
+                {
+                    "name": "奶牛快传",
+                    "url": "https://cowtransfer.com/",
+                    "logo": "https://cdn.dancf.com/kc-front/img/CowTransfer_Black.ffe71d70.png"
+                },
+                {
+                    "name": "沉浸式翻译",
+                    "url": "https://immersivetranslate.com/?via=william-tang",
+                    "logo": "https://s.immersivetranslate.com/static/official-static/img/logo.png"
+                },
                 {
                     "name": "深言达意",
                     "url": "https://www.shenyandayi.com/",
@@ -28,12 +43,57 @@
             ]
         },
         {
-            "name": "在线翻译",
+            "name": "设计",
             "items": [
                 {
-                    "name": "沉浸式翻译",
-                    "url": "https://immersivetranslate.com/?via=william-tang",
-                    "logo": "https://s.immersivetranslate.com/static/official-static/img/logo.png"
+                    "name": "绘蛙",
+                    "url": "https://www.ihuiwa.com/",
+                    "logo": "https://img.alicdn.com/imgextra/i4/O1CN019EjRIt1C1Cpt8y2x8_!!6000000000020-2-tps-250-250.png"
+                },
+                {
+                    "name": "美间",
+                    "url": "https://www.meijian.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/25/bf/03/25bf0330-82f7-169b-1cdb-ff5c0e84a7e7/AppIcon-1x_U007emarketing-0-5-0-0-85-220-0.png/434x0w.webp"
+                },
+                {
+                    "name": "稿定设计",
+                    "url": "https://www.gaoding.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/36/88/46/3688465a-4774-3ed6-1d4d-7f533f852bed/AppIcon-0-0-1x_U007ephone-0-10-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "花瓣网",
+                    "url": "https://huaban.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bd/0b/1f/bd0b1f12-d46a-8d80-04aa-76fe583ca400/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "找字体",
+                    "url": "https://zfont.cn/",
+                    "logo": "/images/zfont.webp"
+                },
+                {
+                    "name": "字由字体",
+                    "url": "https://www.hellofont.cn/",
+                    "logo": "https://resource.hellofont.cn/nav/logo.png"
+                },
+                {
+                    "name": "Pixabay",
+                    "url": "https://pixabay.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/ec/a1/18/eca11884-feb8-69f3-6cea-525fc4dd15fe/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/434x0w.webp"
+                },
+                {
+                    "name": "Pexels",
+                    "url": "https://www.pexels.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5a/57/1d/5a571dce-6dec-d702-d053-33820d4426f8/AppIcon-0-0-1x_U007emarketing-0-8-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Pinterest",
+                    "url": "https://www.pinterest.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5b/43/4b/5b434bd3-738e-4512-3321-2ca14a517faa/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Unsplash",
+                    "url": "https://unsplash.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3e/ae/3c/3eae3cfc-71f1-1976-a1e7-0651f47c8603/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/434x0w.webp"
                 }
             ]
         },

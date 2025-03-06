@@ -3,7 +3,7 @@
   "name": "探索",
   "subcategories": [
       {
-          "name": "生成式AI助手",
+          "name": "AI助手",
           "items": [
               {
                   "name": "DeepSeek",
@@ -58,7 +58,7 @@
           ]
       },
       {
-          "name": "音频/视频生成",
+          "name": "音视频生成",
           "items": [
               {
                   "name": "可灵",
