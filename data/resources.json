@@ -3,18 +3,13 @@
     "name": "资源",
     "subcategories": [
         {
-            "name": "免费字体",
+            "name": "设计",
             "items": [
                 {
                     "name": "找字体",
                     "url": "https://zfont.cn/",
                     "logo": "/images/zfont.webp"
-                }
-            ]
-        },
-        {
-            "name": "无版权素材",
-            "items": [
+                },
                 {
                     "name": "Pixabay",
                     "url": "https://pixabay.com/",

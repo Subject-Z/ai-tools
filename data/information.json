@@ -13,12 +13,12 @@
       ]
     },
     {
-      "name": "统计数据",
+      "name": "数据",
       "items": [
         {
           "name": "国家数据",
           "url": "https://data.stats.gov.cn/",
-          "logo": "https://app.www.gov.cn/govdata/upload/matrix/wxlogo_e071f0da67151e4025e865944efea9fd.png"
+          "logo": "/images/nbs.webp"
         }
       ]
     }

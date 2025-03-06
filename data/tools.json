@@ -3,12 +3,12 @@
     "name": "工具",
     "subcategories": [
         {
-            "name": "在线文件转换工具",
+            "name": "文件处理",
             "items": [
                 {
                     "name": "Convertio",
                     "url": "https://convertio.co/zh/",
-                    "logo": "https://static.convertio.co/img/apple-touch-icon-180x180-precomposed.png"
+                    "logo": "/images/convertio.webp"
                 }
             ]
         },
@@ -38,22 +38,22 @@
             ]
         },
         {
-            "name": "在线出国",
+            "name": "赛博出国",
             "items": [
                 {
                     "name": "Clash Verge Rev",
                     "url": "https://github.com/clash-verge-rev/clash-verge-rev",
-                    "logo": "https://www.clashverge.dev/assets/logo.png"
+                    "logo": "/images/clash-verge-rev.webp"
                 },
                 {
                     "name": "v2rayN",
                     "url": "https://github.com/2dust/v2rayN",
-                    "logo": "https://v2rayn.org/wp-content/uploads/2022/06/1655215063-favicon.png"
+                    "logo": "/images/v2rayN.webp"
                 },
                 {
                     "name": "FlClash",
                     "url": "https://github.com/chen08209/FlClash",
-                    "logo": "https://raw.githubusercontent.com/chen08209/FlClash/refs/heads/main/assets/images/icon.png"
+                    "logo": "/images/FlClash.webp"
                 }
             ]
         }

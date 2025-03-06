@@ -284,10 +284,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     constructor() {
       this.domains = [
         'https://ai-tools-1i5.pages.dev',
-        'https://subject-z.github.io/ai-tools',
+        'https://subject-z.github.io/ai-tools', 
         'http://127.0.0.1:5500'
       ];
-      // 不再使用专门的健康检查文件
       this.cacheKey = 'preferredDomain';
       this.cacheExpiry = 1000 * 60 * 60; // 1小时过期
       
@@ -302,8 +301,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (isValid) return;
       }
 
-      // 执行测速
-      this.raceAllDomains();
+      // 按优先级尝试域名
+      await this.tryDomainsByPriority();
     }
 
     getCachedDomain() {
@@ -341,75 +340,46 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    async raceAllDomains() {
-      try {
-        console.log('开始域名竞速测试...');
-        
-        // 创建一个Promise.race竞赛，谁先完成谁就赢
-        const domainPromises = this.domains.map(domain => {
-          return new Promise(async (resolve) => {
-            try {
-              const controller = new AbortController();
-              const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
-              
-              const start = performance.now();
-              // 直接请求域名根路径，使用HEAD方法减少数据传输
-              const response = await fetch(domain, {
-                signal: controller.signal,
-                method: 'HEAD'
-              });
-              clearTimeout(timeoutId);
-              
-              if (response.ok) {
-                const time = performance.now() - start;
-                console.log(`域名 ${domain} 响应成功，耗时: ${time.toFixed(2)}ms`);
-                resolve({ domain, time });
-              } else {
-                // 不解析失败的请求
-                console.log(`域名 ${domain} 响应失败，状态码: ${response.status}`);
-              }
-            } catch (error) {
-              console.log(`域名 ${domain} 请求失败: ${error.message}`);
-              // 不解析出错的请求
+    async tryDomainsByPriority() {
+      console.log('按优先级尝试域名...');
+      
+      // 按顺序尝试域名
+      for (const domain of this.domains) {
+        try {
+          console.log(`尝试连接域名: ${domain}`);
+          const isAvailable = await this.testDomain(domain, 4000); // 增加超时时间到4秒
+          
+          if (isAvailable) {
+            console.log(`域名 ${domain} 可用`);
+            
+            // 保存到缓存
+            localStorage.setItem(this.cacheKey, JSON.stringify({
+              domain: domain,
+              timestamp: Date.now()
+            }));
+            
+            // 如果当前域名不是可用域名，则跳转
+            if (!window.location.href.startsWith(domain)) {
+              console.log(`跳转到可用域名: ${domain}`);
+              window.location.href = domain;
             }
-          });
-        });
-
-        // 添加一个超时Promise，确保有最终结果
-        const timeoutPromise = new Promise(resolve => {
-          setTimeout(() => {
-            resolve({ domain: this.domains[0], time: Infinity, isTimeout: true });
-          }, 6000); // 6秒后如果都没响应，使用默认域名
-        });
-
-        // 将所有Promise合并到一个race中
-        const winner = await Promise.race([
-          ...domainPromises,
-          timeoutPromise
-        ]);
-
-        // 如果是因为超时导致的结果，记录日志但不做跳转
-        if (winner.isTimeout) {
-          console.log('所有域名测试均未成功，使用默认域名');
-          return;
+            
+            return; // 找到可用域名后立即返回
+          } else {
+            console.log(`域名 ${domain} 不可用，尝试下一个`);
+          }
+        } catch (error) {
+          console.error(`尝试域名 ${domain} 时出错:`, error);
         }
-
-        console.log(`获胜的域名是: ${winner.domain}，耗时: ${winner.time.toFixed(2)}ms`);
-        
-        // 保存到缓存
-        localStorage.setItem(this.cacheKey, JSON.stringify({
-          domain: winner.domain,
-          timestamp: Date.now()
-        }));
-
-        // 如果当前域名不是最快的，则跳转
-        if (!window.location.href.startsWith(winner.domain)) {
-          console.log(`跳转到更快的域名: ${winner.domain}`);
-          window.location.href = winner.domain;
-        }
-      } catch (error) {
-        console.error('域名竞速测试失败:', error);
       }
+      
+      console.log('所有域名均不可用，保持当前域名');
+    }
+
+    // 替换原来的 raceAllDomains 方法
+    async raceAllDomains() {
+      // 此方法被 tryDomainsByPriority 替代
+      await this.tryDomainsByPriority();
     }
   }
 
