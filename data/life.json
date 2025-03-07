@@ -6,6 +6,11 @@
             "name": "购物",
             "items": [
                 {
+                    "name": "拼多多",
+                    "url": "https://p.pinduoduo.com/i5KV5zG7",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7f/54/50/7f545051-3c71-d611-39e7-9c4686a8b25e/AppIcon-1x_U007emarketing-0-7-0-0-0-85-220-0.png/434x0w.webp"
+                },
+                {
                     "name": "淘宝",
                     "url": "https://www.taobao.com/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c9/71/56/c9715664-e749-418b-9c5a-9a2028ee0fa9/AppIcon-0-0-1x_U007emarketing-0-9-0-0-85-220.png/434x0w.webp"
@@ -18,7 +23,7 @@
                 {
                     "name": "天猫超市",
                     "url": "https://s.click.taobao.com/f7h9SKs",
-                    "logo": "https://gw.alicdn.com/imgextra/i3/O1CN01eR0GnI1nQWcvu7JRC_!!6000000005084-2-tps-689-260.png_320x320q50.jpg"
+                    "logo": "/images/tmall-supermarket.webp"
                 },
                 {
                     "name": "京东",

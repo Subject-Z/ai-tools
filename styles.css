@@ -255,10 +255,6 @@ section.active {
   transition: transform 0.3s ease; 
 }
 
-.card-logo:hover {
-  transform: scale(0.75);
-}
-
 /* 自适应卡片文字大小 */
 .card a {
   color: #000000;
@@ -271,6 +267,10 @@ section.active {
   margin-top: 10px;
   overflow: hidden; /* 改为hidden，隐藏溢出内容 */
   text-overflow: ellipsis; /* 添加省略号表示被截断的文本 */
+}
+
+.card:hover a {
+  color: #1A73E8;
 }
 
 /* 卡片列表网格布局 - 自适应版本 */

@@ -101,6 +101,11 @@
             "name": "赛博出国",
             "items": [
                 {
+                    "name": "阿拉丁",
+                    "url": "https://www.avatargpt.xyz/register?aff=ajrj7lxT5c",
+                    "logo": "/images/aladdin.webp"
+                },
+                {
                     "name": "Clash Verge Rev",
                     "url": "https://github.com/clash-verge-rev/clash-verge-rev",
                     "logo": "/images/clash-verge-rev.webp"
