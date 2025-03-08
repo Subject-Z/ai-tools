@@ -69,6 +69,16 @@
                     "name": "X",
                     "url": "https://x.com/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/44/bd/20/44bd2007-8318-58cf-c44e-1de7f74db06b/ProductionAppIcon-0-0-1x_U007emarketing-0-8-0-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Reddit",
+                    "url": "https://www.reddit.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/1f/fa/b1/1ffab150-31c8-1e45-1c76-01d8a32df81e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Discord",
+                    "url": "https://discord.com/channels/@me",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9e/57/08/9e570837-082f-ccec-9ae6-56a5eef9e7ba/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/434x0w.webp"
                 }
             ]
         }

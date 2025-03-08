@@ -6,24 +6,40 @@
             "name": "AI助手",
             "items": [
                 {
-                    "name": "DeepSeek",
-                    "url": "https://chat.deepseek.com/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/b3/ed/24b3ed69-fb18-9a44-6101-721adc192f2e/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/434x0w.webp"
-                },
-                {
                     "name": "Qwen",
                     "url": "https://chat.qwenlm.ai/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/a5/34/21/a5342192-fd47-fc04-abc8-c768a2c26620/AppIcon-0-1x_U007epad-0-0-85-220-0.png/434x0w.webp"
                 },
                 {
+                    "name": "DeepSeek",
+                    "url": "https://chat.deepseek.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/b3/ed/24b3ed69-fb18-9a44-6101-721adc192f2e/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Grok",
+                    "url": "https://grok.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4d/1f/ac/4d1faca1-31a7-84a5-41ac-09d651a5e5a0/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/434x0w.webp"
+                },
+                {
+                    "name": "ChatGPT",
+                    "url": "https://chatgpt.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/41/a5/e641a506-f5bf-f239-578c-8a159aa4ca67/AppIcon-0-0-1x_U007epad-0-0-0-1-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Claude",
+                    "url": "https://claude.ai/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d6/79/ad/d679ad63-4f76-ef0f-62c4-ff39e9f04b25/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
+                },
+
+                {
+                    "name": "Gemini",
+                    "url": "https://gemini.google.com/app",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/3e/e0/b53ee024-0d8e-3208-1567-adf1411c6ac1/AppIcon-0-0-1x_U007ephone-0-0-0-8-0-0-0-85-220.png/434x0w.webp"
+                },
+                {
                     "name": "豆包",
                     "url": "https://www.doubao.com/chat/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a6/ef/92/a6ef9221-a68e-cb11-609e-025fc35b9014/AppIcon-0-0-1x_U007epad-0-7-0-85-220.png/434x0w.webp"
-                },
-                {
-                    "name": "Kimi",
-                    "url": "https://kimi.moonshot.cn/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/43/86/cc/4386ccde-9bc5-acf4-8aa7-5e940a6b3620/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/434x0w.webp"
                 },
                 {
                     "name": "跃问",
@@ -36,29 +52,39 @@
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/75/96/67/75966786-2df3-a4e5-e896-e555d9373ba9/AppIcon-0-0-85-220-0-0-4-0-2x.png/434x0w.webp"
                 },
                 {
-                    "name": "ChatGPT",
-                    "url": "https://chatgpt.com/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e6/41/a5/e641a506-f5bf-f239-578c-8a159aa4ca67/AppIcon-0-0-1x_U007epad-0-0-0-1-0-85-220.png/434x0w.webp"
+                    "name": "Kimi",
+                    "url": "https://kimi.moonshot.cn/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/43/86/cc/4386ccde-9bc5-acf4-8aa7-5e940a6b3620/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/434x0w.webp"
                 },
                 {
-                    "name": "Claude",
-                    "url": "https://claude.ai/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d6/79/ad/d679ad63-4f76-ef0f-62c4-ff39e9f04b25/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
+                    "name": "智谱清言",
+                    "url": "https://chatglm.cn/main/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/be/d8/30/bed830d5-323a-1221-697e-d4a5c63f82d7/AppIcon-0-0-85-220-0-0-4-0-2x.png/434x0w.webp"
                 },
                 {
-                    "name": "Grok",
-                    "url": "https://grok.com/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4d/1f/ac/4d1faca1-31a7-84a5-41ac-09d651a5e5a0/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/434x0w.webp"
+                    "name": "元宝",
+                    "url": "https://yuanbao.tencent.com/chat/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/47/81/15/47811503-8d53-50f1-51c9-fbce355c9682/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/434x0w.webp"
                 },
                 {
-                    "name": "Gemini",
-                    "url": "https://gemini.google.com/app",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b5/3e/e0/b53ee024-0d8e-3208-1567-adf1411c6ac1/AppIcon-0-0-1x_U007ephone-0-0-0-8-0-0-0-85-220.png/434x0w.webp"
+                    "name": "文心一言",
+                    "url": "https://yiyan.baidu.com/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/30/d9/35/30d935a3-d9b5-7a4e-7729-beb979ae6391/AppIcon-0-1x_U007epad-0-1-0-0-sRGB-85-220-0.png/434x0w.webp"
+                },
+                {
+                    "name": "Cohere",
+                    "url": "https://coral.cohere.com/",
+                    "logo": "/images/cohere.webp"
+                },
+                {
+                    "name": "Mistral",
+                    "url": "https://chat.mistral.ai/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0f/20/23/0f20234a-29f7-4d1e-88ee-2a04d7c8d5c1/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
                 }
             ]
         },
         {
-            "name": "音视频生成",
+            "name": "多模态生成",
             "items": [
                 {
                     "name": "可灵",
@@ -69,6 +95,16 @@
                     "name": "即梦",
                     "url": "https://jimeng.jianying.com/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/41/06/db/4106db28-2242-5401-fa37-60f3d8c51919/AppIcon-0-0-1x_U007ephone-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "堆友",
+                    "url": "https://d.design/",
+                    "logo": "https://img.alicdn.com/imgextra/i2/O1CN01chTRfM1RHRCkxMMSn_!!6000000002086-0-tps-200-200.jpg"
+                },
+                {
+                    "name": "Midjourney",
+                    "url": "https://www.midjourney.com/",
+                    "logo": "/images/midjourney.webp"
                 },
                 {
                     "name": "Pika",
@@ -106,9 +142,29 @@
                     "logo": "/images/OAIPro.webp"
                 },
                 {
+                    "name": "LobeChat",
+                    "url": "https://lobechat.com/",
+                    "logo": "/images/lobechat.webp"
+                },
+                {
                     "name": "Poe",
                     "url": "https://poe.com/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a1/ae/77/a1ae773e-ff21-2414-c091-7dc9707ef535/AppIcon_Poe-0-0-1x_U007emarketing-0-0-0-8-0-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Hugging Chat",
+                    "url": "https://huggingface.co/chat/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7c/09/54/7c0954e4-4da1-876d-f2c9-5b8001b5f76c/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Perplexity",
+                    "url": "https://www.perplexity.ai/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/2e/ef/b9/2eefb9fe-6c38-ec2b-3f05-1a2ac133f164/AppIcon-0-1x_U007epad-0-0-0-1-0-0-85-220-0.png/434x0w.webp"
+                },
+                {
+                    "name": "Genspark",
+                    "url": "https://www.genspark.ai/",
+                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4b/e0/41/4be041e6-ee6f-135e-7326-8a312877a532/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/434x0w.webp"
                 },
                 {
                     "name": "Hugging Chat",
@@ -124,6 +180,11 @@
                     "name": "硅基流动",
                     "url": "https://cloud.siliconflow.cn/i/rVmVexgG",
                     "logo": "/images/siliconflow.webp"
+                },
+                {
+                    "name": "O3 AI",
+                    "url": "https://o3.fan/register/?aff_code=dwna",
+                    "logo": "https://o3.fan/assets/img/bg/avatar.png"
                 },
                 {
                     "name": "阿里云百炼",
