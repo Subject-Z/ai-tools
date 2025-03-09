@@ -24,27 +24,13 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- 关于我们页面 -->
-  <url>
-    <loc>https://ai-tools-1i5.pages.dev/about.html</loc>
-    <lastmod>2025-02-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
   <!-- 联系我们页面 -->
   <url>
-    <loc>https://ai-tools-1i5.pages.dev/contact.html</loc>
+    <loc>https://f.wps.cn/g/UTL0uZCE/</loc>
     <lastmod>2025-02-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- 隐私政策页面 -->
-  <url>
-    <loc>https://ai-tools-1i5.pages.dev/privacy.html</loc>
-    <lastmod>2024-12-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>
