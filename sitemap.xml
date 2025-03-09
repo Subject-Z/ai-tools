@@ -4,11 +4,11 @@
        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- 首页 -->
   <url>
-    <loc>https://ai-tools-1i5.pages.dev/</loc>
+    <loc>https://omninav.uk/</loc>
     <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-tools-1i5.pages.dev/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://omninav.uk/" />
     <!-- 首页重要图片 -->
     <image:image>
       <image:loc>https://chat.deepseek.com/deepseek-chat.jpeg</image:loc>
@@ -18,19 +18,17 @@
   
   <!-- 文章列表页 -->
   <url>
-    <loc>https://ai-tools-1i5.pages.dev/articles.html</loc>
+    <loc>https://omninav.uk/articles.html</loc>
     <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- 联系我们页面 -->
+  <!-- 联系我们 -->
   <url>
-    <loc>https://f.wps.cn/g/UTL0uZCE/</loc>
-    <lastmod>2025-02-15</lastmod>
+    <loc>mailto:william@omninav.uk</loc>
+    <lastmod>2025-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
   </url>
 </urlset>

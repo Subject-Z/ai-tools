@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-tools-1i5.pages.dev/sitemap.xml
+Sitemap: https://omninav.uk/sitemap.xml

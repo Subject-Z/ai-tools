@@ -258,43 +258,92 @@ section.active {
   display: block;
 }
 
+/* 卡片样式优化 - 区分主体和按钮 */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+/* 为卡片主体(非按钮部分)添加指针样式和过渡效果 */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+  width: 100%; /* 确保宽度占满卡片 */
 }
 
-/* 自适应卡片 logo 尺寸 */
+/* 卡片Logo样式 */
 .card-logo {
-  width: clamp(50px, 7vw, 70px);
-  height: clamp(50px, 7vw, 70px);
-  border-radius: 15%;
-  background-size: contain;
-  background-repeat: no-repeat;
+  width: 80%;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  background-size: cover;
   background-position: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease; 
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 自适应卡片文字大小 */
-.card a {
+/* 卡片链接样式优化 */
+.card a:not(.promotion-btn) {
   color: #000000;
   font-size: clamp(0.85em, 1vw, 1.2em);
   text-decoration: none;
   text-align: center;
-  width: 100%; /* 改回100%，限制宽度为卡片容器宽度 */
-  white-space: nowrap; /* 保持不换行 */
-  max-width: 100%; /* 设置最大宽度为容器宽度 */
+  width: 100%;
+  white-space: nowrap;
+  max-width: 100%;
   margin-top: 10px;
-  overflow: hidden; /* 改为hidden，隐藏溢出内容 */
-  text-overflow: ellipsis; /* 添加省略号表示被截断的文本 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
 }
 
-.card:hover a {
+.card-body:hover a:not(.promotion-btn) {
   color: #1A73E8;
+}
+
+/* 优惠按钮样式 */
+.promotion-btn {
+  position: relative;
+  top: auto;
+  right: auto;
+  display: flex; /* 改为flex布局 */
+  align-items: center; /* 垂直居中内容 */
+  justify-content: center; /* 水平居中内容 */
+  width: 100%;
+  height: 40px;
+  margin: 10px auto 0;
+  background: linear-gradient(135deg, #FF6B00, #FF9000);
+  color: white ; 
+  border-radius: 12px;
+  padding: 3px 0px;
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.3);
+  transition: transform 0.2s ease, background 0.3s ease;
+  z-index: 1;
+  cursor: pointer;
+  box-sizing: border-box; /* 确保内边距不会增加总高度 */
+  border: 2px solid transparent; 
+}
+
+.promotion-btn:hover {
+  /* 增强的hover效果 */
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #FF852E, #FFA54D);
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* 卡片列表网格布局 - 自适应版本 */
@@ -328,7 +377,8 @@ section.active {
 .subcategory-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(clamp(60px, 13%, 100px), 1fr));
-  gap: clamp(10px, 1vw, 25px);
+  column-gap: clamp(10px, 1vw, 25px);
+  row-gap: clamp(20px, 3vh, 30px);
 }
 
 /* 搜索引擎选择样式 */
@@ -595,10 +645,6 @@ section.active {
 
 .sidebar-content a i {
   margin-right: 10px;
-}
-
-.sidebar-content a:hover {
-  color: #000;
 }
 
 /* 遮罩层 - 点击关闭侧边栏 */

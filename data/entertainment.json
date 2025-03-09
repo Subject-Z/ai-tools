@@ -3,6 +3,146 @@
   "name": "娱乐",
   "subcategories": [
     {
+      "name": "影视",
+      "items": [
+        {
+          "name": "韩剧看看",
+          "url": "https://www.hanjukankan.com/",
+          "logo": "https://www.hanjukankan.com/mxtheme/images/favicon.png"
+        },
+        {
+          "name": "蛋蛋赞影院",
+          "url": "https://www.dandanzan.me/",
+          "logo": "https://www.dandanzan.me/favicon.ico"
+        },
+        {
+          "name": "厂长资源",
+          "url": "https://www.czzy77.com/",
+          "logo": "https://gimg0.baidu.com/gimg/app=2001&n=0&g=0n&fmt=jpeg&src=img.czzy66.com/2024/09/fd2fa7a94afb88.jpg"
+        },
+        {
+          "name": "火车太堵",
+          "url": "https://www.tdgo.shop/",
+          "logo": "https://www.tdgo.shop/upload/vod/20241112-1/a0d4c333e5795f33ceede12c490b1373.png"
+        },
+        {
+          "name": "4K影视",
+          "url": "https://www.4kvm.tv/",
+          "logo": "https://www.4kvm.tv/wp-content/uploads/2020/07/385d1786e61233.png"
+        },
+        {
+          "name": "海纳TV",
+          "url": "https://www.hainatv.net/",
+          "logo": "https://www.hainatv.net/upload/site/20240107-1/70a415f2fd864afd1bfedb8d33a8d0e2.png"
+        },
+        {
+          "name": "爱电影",
+          "url": "https://www.czzy77.com/",
+          "logo": "https://obs.gduamoe.com/upload/site_ico/20240624-1/6428e35ca303d01aac03c575c9c0c3ae_180x180.png"
+        },
+        {
+          "name": "爱看影视",
+          "url": "https://www.aikandy.pro/",
+          "logo": "https://www.aikandy.pro/favicon.ico"
+        },
+        {
+          "name": "饺子影视",
+          "url": "https://www.jiaozi.me/",
+          "logo": "https://www.jiaozi.me/favicon.ico"
+        },
+        {
+          "name": "剧爷爷",
+          "url": "https://www.juyeye.cc/",
+          "logo": "https://www.juyeye.cc/mxtheme/images/favicon.png"
+        },
+        {
+          "name": "金牌影院",
+          "url": "https://www.hskjjglo.com/",
+          "logo": "https://obs.gduamoe.com/upload/site_ico/20250210-1/82f60e82218ab42e446da3719512f6bf_180x180.png"
+        },
+        {
+          "name": "独播库",
+          "url": "https://www.duboku.tv/",
+          "logo": "https://www.duboku.tv/template/mytheme/statics/img/logo_min.png"
+        },
+        {
+          "name": "剧看看",
+          "url": "https://www.jukankan.tv/",
+          "logo": "https://www.jukankan.tv/template/jukankan/statics/img/logo_f.png"
+        },
+        {
+          "name": "奈飞工厂",
+          "url": "https://www.netflixgc.com/",
+          "logo": "https://www.netflixgc.com/upload/site/20241029-1/708c271d0bbf43725b96fad94d0c1eb4.png"
+        },
+        {
+          "name": "看片狂人",
+          "url": "https://kuangren.us/",
+          "logo": "https://kuangren.us/favicon.ico"
+        },
+        {
+          "name": "爱壹帆",
+          "url": "https://www.iyf.lv/",
+          "logo": "https://www.iyf.lv/196.png"
+        },
+        {
+          "name": "星空影视",
+          "url": "https://www.xkvvv.com/",
+          "logo": "https://www.xkvvv.com/favicon.ico"
+        },
+        {
+          "name": "NO视频",
+          "url": "https://www.novipnoad.net/",
+          "logo": "https://img.novipnoad.net/apple-touch-icon.png"
+        },
+        {
+          "name": "欧乐影院",
+          "url": "https://www.olehdtv.com/",
+          "logo": "https://static.olelive.com/upload/site/20201117-1/08aee3974ca3d001ceab066233599789.png"
+        },
+        {
+          "name": "FreeHD",
+          "url": "https://www.freehd1.vip/",
+          "logo": "https://www.freehd1.vip/upload/site/20250116-1/1c3fbb7e79300f19713f65b14057b00b.png"
+        },
+        {
+          "name": "低端影视",
+          "url": "https://ddys.info/",
+          "logo": "https://ddys.pro/apple-touch-icon.png"
+        },
+        {
+          "name": "LIBVIO",
+          "url": "https://libvio.vip/",
+          "logo": "https://libvio.vip/statics/img/favicon.ico"
+        },
+        {
+          "name": "TVB云播",
+          "url": "http://www.hktvyb.vip/",
+          "logo": "http://customer-service.cos.tx.xmcdn.com/storages/ad88-customerservice/8B/FF/GKwRIRwKbrTmAAEIPgLyyQJK.ico"
+        },
+        {
+          "name": "真狼影视",
+          "url": "https://www.zhenlang.cc/",
+          "logo": "https://www.zhenlang.cc/template/conch/asset/img/favicon.png"
+        },
+        {
+          "name": "耐看点播",
+          "url": "https://nkvod.me/",
+          "logo": "https://nkvod.me/upload/site/20241223-1/7c00a9d60fffa62f46be199e52d6cc85.png"
+        },
+        {
+          "name": "CN影院",
+          "url": "https://cnys.tv/",
+          "logo": "https://cnys.tv/upload/site/20241108-1/f15406810699ffec5f80135c212d08de.png"
+        },
+        {
+          "name": "OnDemandChina",
+          "url": "https://www.ondemandchina.com/zh-Hans",
+          "logo": "https://www.ondemandchina.com/favicon.ico"
+        }
+      ]
+    },
+    {
       "name": "动漫",
       "items": [
         {
@@ -14,6 +154,36 @@
           "name": "次元城动画",
           "url": "https://www.cycani.org/",
           "logo": "/images/cycani.webp"
+        },
+        {
+          "name": "233动漫",
+          "url": "https://www.233dm.com/",
+          "logo": "https://www.233dm.com/template/the4/statics/img/favicon.ico"
+        },
+        {
+          "name": "风铃动漫",
+          "url": "https://www.aafun.cc/",
+          "logo": "https://www.aafun.cc/favicon.ico"
+        },
+        {
+          "name": "路漫漫",
+          "url": "https://i.qg50.com/",
+          "logo": "https://www.lmm96.com/template/jable/statics/icon/favicon.ico"
+        },
+        {
+          "name": "趣动漫",
+          "url": "https://www.qdm66.com/",
+          "logo": "https://www.qdm66.com/favicon.ico"
+        },
+        {
+          "name": "girigiri愛動漫",
+          "url": "https://anime.girigirilove.com/",
+          "logo": "https://anime.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png"
+        },
+        {
+          "name": "樱花动漫",
+          "url": "https://www.yinghua4.com/",
+          "logo": "https://www.yinghua4.com/statics/img/favicon.ico"
         }
       ]
     },

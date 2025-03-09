@@ -6,6 +6,11 @@
             "name": "在线工具",
             "items": [
                 {
+                    "name": "沉浸式翻译",
+                    "url": "https://immersivetranslate.com/?via=william-tang",
+                    "logo": "https://s.immersivetranslate.com/static/official-static/img/logo.png"
+                },
+                {
                     "name": "Convertio",
                     "url": "https://convertio.co/zh/",
                     "logo": "/images/convertio.webp"
@@ -24,11 +29,6 @@
                     "name": "奶牛快传",
                     "url": "https://cowtransfer.com/",
                     "logo": "https://cdn.dancf.com/kc-front/img/CowTransfer_Black.ffe71d70.png"
-                },
-                {
-                    "name": "沉浸式翻译",
-                    "url": "https://immersivetranslate.com/?via=william-tang",
-                    "logo": "https://s.immersivetranslate.com/static/official-static/img/logo.png"
                 },
                 {
                     "name": "深言达意",
