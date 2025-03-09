@@ -29,18 +29,9 @@ html {
 
 /* 基础样式 */
 body {
-  background: linear-gradient(
-    -45deg,
-    #F3EAE6,    /* 柔雾粉 */
-    #F0E7ED,    /* 新增丁香雾 */
-    #EDE8F2,    /* 新增晨雾紫 */
-    #E8EAF2,    /* 新增天穹灰 */
-    #E6EFF4,    /* 原冰川蓝 */
-    #E2F0F1,    /* 新增海沫绿 */
-    #E8F2E9     /* 新增新叶白 */
-  );
+  background: linear-gradient(-45deg, #F3EAE6, #F3EEF6, #EFEEF5, #E6EFF4);
   background-size: 400% 400%;
-  animation: gradient 40s ease infinite;
+  animation: gradient 15s ease infinite;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
