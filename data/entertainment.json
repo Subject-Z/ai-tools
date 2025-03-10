@@ -8,7 +8,7 @@
         {
           "name": "韩剧看看",
           "url": "https://www.hanjukankan.com/",
-          "logo": "https://www.hanjukankan.com/mxtheme/images/favicon.png"
+          "logo": "https://www.hanjukankan.com/mxtheme/image/logo/favicon.png"
         },
         {
           "name": "蛋蛋赞影院",
@@ -53,7 +53,7 @@
         {
           "name": "剧爷爷",
           "url": "https://www.juyeye.cc/",
-          "logo": "https://www.juyeye.cc/mxtheme/images/favicon.png"
+          "logo": "https://www.juyeye.cc/mxtheme/image/logo/favicon.png"
         },
         {
           "name": "金牌影院",
@@ -148,12 +148,12 @@
         {
           "name": "AGE动漫",
           "url": "https://www.agedm.org",
-          "logo": "/images/age.webp"
+          "logo": "/image/logo/age.webp"
         },
         {
           "name": "次元城动画",
           "url": "https://www.cycani.org/",
-          "logo": "/images/cycani.webp"
+          "logo": "/image/logo/cycani.webp"
         },
         {
           "name": "233动漫",
@@ -193,12 +193,12 @@
         {
           "name": "LX Music",
           "url": "https://lxmusic.toside.cn/",
-          "logo": "/images/lxmusic.webp"
+          "logo": "/image/logo/lxmusic.webp"
         },
         {
           "name": "MusicFree",
           "url": "https://musicfree.catcat.work/",
-          "logo": "/images/musicfree.webp"
+          "logo": "/image/logo/musicfree.webp"
         }
       ]
     }

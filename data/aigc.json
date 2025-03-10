@@ -74,12 +74,17 @@
                 {
                     "name": "Cohere",
                     "url": "https://coral.cohere.com/",
-                    "logo": "/images/cohere.webp"
+                    "logo": "/image/logo/cohere.webp"
                 },
                 {
                     "name": "Mistral",
                     "url": "https://chat.mistral.ai/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0f/20/23/0f20234a-29f7-4d1e-88ee-2a04d7c8d5c1/AppIcon-0-0-1x_U007epad-0-1-85-220.png/434x0w.webp"
+                },
+                {
+                    "name": "Mercury",
+                    "url": "https://chat.inceptionlabs.ai/",
+                    "logo": "https://chat.inceptionlabs.ai/static/favicon_black.png"
                 }
             ]
         },
@@ -104,7 +109,7 @@
                 {
                     "name": "Midjourney",
                     "url": "https://www.midjourney.com/",
-                    "logo": "/images/midjourney.webp"
+                    "logo": "/image/logo/midjourney.webp"
                 },
                 {
                     "name": "Pika",
@@ -119,7 +124,7 @@
                 {
                     "name": "Udio",
                     "url": "https://www.udio.com/",
-                    "logo": "/images/Udio.webp"
+                    "logo": "/image/logo/Udio.webp"
                 }
             ]
         },
@@ -129,22 +134,22 @@
                 {
                     "name": "Cherry Studio",
                     "url": "https://cherry-ai.com/",
-                    "logo": "/images/cherry-studio.webp"
+                    "logo": "/image/logo/cherry-studio.webp"
                 },
                 {
                     "name": "GPT-GOD",
                     "url": "https://gptgod.online/#/register?invite_code=3jo30zqw0gcal42403gxks34",
-                    "logo": "/images/GPT-GOD.webp"
+                    "logo": "/image/logo/GPT-GOD.webp"
                 },
                 {
                     "name": "OAIPro",
                     "url": "https://api.oaipro.com/register?aff=IWt8",
-                    "logo": "/images/OAIPro.webp"
+                    "logo": "/image/logo/OAIPro.webp"
                 },
                 {
                     "name": "LobeChat",
                     "url": "https://lobechat.com/",
-                    "logo": "/images/lobechat.webp"
+                    "logo": "/image/logo/lobechat.webp"
                 },
                 {
                     "name": "Poe",
@@ -165,11 +170,6 @@
                     "name": "Genspark",
                     "url": "https://www.genspark.ai/",
                     "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4b/e0/41/4be041e6-ee6f-135e-7326-8a312877a532/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/434x0w.webp"
-                },
-                {
-                    "name": "Hugging Chat",
-                    "url": "https://huggingface.co/chat/",
-                    "logo": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7c/09/54/7c0954e4-4da1-876d-f2c9-5b8001b5f76c/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/434x0w.webp"
                 }
             ]
         },
@@ -179,7 +179,7 @@
                 {
                     "name": "硅基流动",
                     "url": "https://cloud.siliconflow.cn/i/rVmVexgG",
-                    "logo": "/images/siliconflow.webp"
+                    "logo": "/image/logo/siliconflow.webp"
                 },
                 {
                     "name": "O3 AI",
@@ -194,32 +194,32 @@
                 {
                     "name": "火山方舟",
                     "url": "https://console.volcengine.com/ark/",
-                    "logo": "/images/volcengine.webp"
+                    "logo": "/image/logo/volcengine.webp"
                 },
                 {
                     "name": "AI Studio",
                     "url": "https://aistudio.google.com/app/",
-                    "logo": "/images/google-ai-studio.webp"
+                    "logo": "/image/logo/google-ai-studio.webp"
                 },
                 {
                     "name": "Groq",
                     "url": "https://console.groq.com/",
-                    "logo": "/images/groq.webp"
+                    "logo": "/image/logo/groq.webp"
                 },
                 {
                     "name": "OpenRouter",
                     "url": "https://openrouter.ai/",
-                    "logo": "/images/openrouter.webp"
+                    "logo": "/image/logo/openrouter.webp"
                 },
                 {
                     "name": "魔搭社区",
                     "url": "https://www.modelscope.cn/",
-                    "logo": "/images/modelscope.webp"
+                    "logo": "/image/logo/modelscope.webp"
                 },
                 {
                     "name": "Hugging Face",
                     "url": "https://huggingface.co/models",
-                    "logo": "/images/huggingface.webp"
+                    "logo": "/image/logo/huggingface.webp"
                 }
             ]
         }

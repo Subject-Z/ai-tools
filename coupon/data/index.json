@@ -1,0 +1,64 @@
+{
+  "coupons": [
+    {
+      "id": "cp001",
+      "title": "ChatGPT Plus 订阅优惠",
+      "description": "首月订阅享8折优惠",
+      "code": "AIPLUS20",
+      "expire": "2025-04-15",
+      "category": "ai",
+      "link": "https://chat.openai.com/",
+      "startDate": "2025-03-01T00:00:00Z",
+      "endDate": "2025-04-15T23:59:59Z",
+      "isActive": true
+    },
+    {
+      "id": "cp002",
+      "title": "Claude Pro 会员折扣",
+      "description": "年付立减20%",
+      "code": "CLAUDEPRO20",
+      "expire": "2025-03-31",
+      "category": "ai",
+      "link": "https://claude.ai/",
+      "startDate": "2025-03-05T00:00:00Z",
+      "endDate": "2025-03-31T23:59:59Z",
+      "isActive": true
+    },
+    {
+      "id": "cp003",
+      "title": "京东自营商品券",
+      "description": "满300减50",
+      "code": "JD50OFF300",
+      "expire": "2025-03-25",
+      "category": "shopping",
+      "link": "https://www.jd.com/",
+      "startDate": "2025-03-10T00:00:00Z",
+      "endDate": "2025-03-25T23:59:59Z",
+      "isActive": true
+    },
+    {
+      "id": "cp004",
+      "title": "Adobe Creative Cloud 折扣",
+      "description": "首年订阅7折优惠",
+      "code": "ADOBE30OFF",
+      "expire": "2025-05-30",
+      "category": "software",
+      "link": "https://www.adobe.com/creativecloud.html",
+      "startDate": "2025-04-01T00:00:00Z",
+      "endDate": "2025-05-30T23:59:59Z",
+      "isActive": false
+    },
+    {
+      "id": "cp005",
+      "title": "Coursera 课程优惠",
+      "description": "专业证书课程立减25%",
+      "code": "LEARN25",
+      "expire": "2025-06-30",
+      "category": "education",
+      "link": "https://www.coursera.org/",
+      "startDate": "2025-05-01T00:00:00Z",
+      "endDate": "2025-06-30T23:59:59Z",
+      "isActive": false
+    }
+  ]
+}

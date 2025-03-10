@@ -263,48 +263,105 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // 域名切换功能 - 使用omninav.uk作为主域名
+  // 优化后的域名切换功能 - 考虑CNAME别名和多托管服务器情况
   function initDomainFallback() {
     // 避免循环跳转
     if (new URLSearchParams(window.location.search).get('from') === 'fallback') {
       return;
     }
   
-    // 定义域名映射关系 - 以omninav.uk为主域名
-    const DOMAIN_MAP = {
-      "omninav.uk": null, // 主域名无需跳转
-      "ai-tools-1i5.pages.dev": "https://omninav.uk",
-      "subject-z.github.io": "https://omninav.uk",
-      "127.0.0.1": null // 本地开发环境不跳转
+    // 定义域名配置和优先级
+    const DOMAIN_CONFIG = {
+      // 主域名 (CNAME别名)
+      "omninav.uk": {
+        priority: 1,
+        fallback: ["ai-tools-1i5.pages.dev", "subject-z.github.io"]
+      },
+      // 托管服务器1
+      "ai-tools-1i5.pages.dev": {
+        priority: 2, 
+        fallback: ["subject-z.github.io", "omninav.uk"]
+      },
+      // 托管服务器2
+      "subject-z.github.io": {
+        priority: 3,
+        fallback: ["ai-tools-1i5.pages.dev", "omninav.uk"]
+      },
+      // 本地开发环境不跳转
+      "127.0.0.1": {
+        priority: 0,
+        fallback: []
+      },
+      "localhost": {
+        priority: 0,
+        fallback: []
+      }
     };
     
     const currentHostname = window.location.hostname;
-    // 从域名映射中获取当前站点应该跳转的目标域名
-    const fallbackDomain = DOMAIN_MAP[currentHostname];
+    const config = DOMAIN_CONFIG[currentHostname];
     
+    // 如果当前域名未在配置中或为本地开发环境，不进行跳转
+    if (!config || config.priority === 0) {
+      return;
+    }
+    
+    // 检测当前站点可用性，如果不可用则立即跳转
+    checkSiteAvailability()
+      .then(isAvailable => {
+        if (!isAvailable && config.fallback.length > 0) {
+          // 当前站点不可用，立即跳转到备选站点
+          performFallback(config.fallback[0]);
+        }
+      })
+      .catch(() => {
+        // 检测过程中出错，也立即跳转到备选站点
+        if (config.fallback.length > 0) {
+          performFallback(config.fallback[0]);
+        }
+      });
+  }
+  
+  // 检查当前站点可用性
+  function checkSiteAvailability() {
+    return new Promise((resolve) => {
+      const timeoutId = setTimeout(() => {
+        resolve(false);
+      }, 1000);
+      
+      fetch(`/favicon.ico?t=${Date.now()}`, { 
+        method: 'HEAD',
+        mode: 'no-cors',
+        cache: 'no-store'
+      })
+      .then(() => {
+        clearTimeout(timeoutId);
+        resolve(true); // 请求成功认为可用
+      })
+      .catch(() => {
+        clearTimeout(timeoutId);
+        resolve(false); // 请求失败认为不可用
+      });
+    });
+  }
+  
+  // 执行域名跳转
+  function performFallback(fallbackDomain) {
     if (!fallbackDomain) {
       return;
     }
     
-    // 设置超时，确保不会因网络问题永久挂起
-    const timeoutId = setTimeout(() => {
-      window.location.href = `${fallbackDomain}?from=fallback`;
-    }, 3000);
+    // 保存当前路径和查询参数，以便在跳转时保留
+    const currentPathWithQuery = window.location.pathname + window.location.search + window.location.hash;
     
-    // 检测当前站点可用性
-    fetch(`/favicon.ico?t=${Date.now()}`, { 
-      method: 'HEAD',
-      mode: 'no-cors',
-      cache: 'no-store'
-    })
-    .then(() => {
-      // 当前站点可用，清除超时
-      clearTimeout(timeoutId);
-    })
-    .catch(error => {
-      // 当前站点不可用，跳转到主域名
-      window.location.href = `${fallbackDomain}?from=fallback`;
-    });
+    // 添加fallback标记，防止循环重定向
+    const separator = currentPathWithQuery.includes('?') ? '&' : '?';
+    const fallbackMarker = `${separator}from=fallback`;
+    const fullPath = currentPathWithQuery + (currentPathWithQuery.includes('from=fallback') ? '' : fallbackMarker);
+    
+    // 生成跳转URL并立即跳转
+    const protocol = window.location.protocol;
+    window.location.href = `${protocol}//${fallbackDomain}${fullPath}`;
   }
   
   // 在DOMContentLoaded事件中调用
@@ -389,7 +446,6 @@ function renderCategory(category) {
   
   section.appendChild(cardList);
 }
-
 // 创建单个卡片
 function createCard(cardData) {
   const card = document.createElement('div');
@@ -418,10 +474,17 @@ function createCard(cardData) {
   // 添加优惠链接按钮（如果存在）- 放在主链接下方，但在卡片容器内
   if (cardData.promotion) {
     const promotionBtn = document.createElement('a');
-    promotionBtn.href = cardData.promotion.url;
-    promotionBtn.target = '_blank';
+    // 不直接设置href属性，而是使用javascript:void(0)
+    promotionBtn.href = "javascript:void(0)";
     promotionBtn.className = 'promotion-btn';
     promotionBtn.textContent = cardData.promotion.text || '优惠';
+    
+    // 使用点击事件处理器来打开链接
+    promotionBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(cardData.promotion.url, '_blank');
+    });
+    
     card.appendChild(promotionBtn);
   }
   

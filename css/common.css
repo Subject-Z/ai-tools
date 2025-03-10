@@ -1,0 +1,98 @@
+/* 禁用移动设备上的点击高亮效果 */
+a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* CSS 变量定义 - 移到顶部更合理 */
+  :root {
+    --background: #fff;
+    --foreground: #171717;
+    --primary: #171717;
+    --primary-foreground: #fafafa;
+    --input: #e5e5e5;
+    --radius: 0.5rem;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  html {
+    overflow-x: hidden;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* 基础样式 */
+  body {
+    background: linear-gradient(-45deg, #F3EAE6, #F3EEF6, #EFEEF5, #E6EFF4);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+  /* 添加背景渐变动画关键帧 */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+/* 顶部导航样式 */
+#top-nav {
+    margin: 10px 0 0;
+}
+
+.top-links {
+    margin: 0 20vw;
+}
+
+.top-links a, nav a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 3vw;
+    font-size: 1.5rem;
+    padding: 8px 5px;
+    position: relative;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    display: inline-block;
+}
+
+.top-links a::after, nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.top-links a:hover, nav a:hover {
+    color: #007bff;
+}
+
+.top-links a:hover::after, nav ul li a:hover::after {
+    width: 100%;
+}

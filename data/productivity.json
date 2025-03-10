@@ -13,7 +13,7 @@
                 {
                     "name": "Convertio",
                     "url": "https://convertio.co/zh/",
-                    "logo": "/images/convertio.webp"
+                    "logo": "/image/logo/convertio.webp"
                 },
                 {
                     "name": "Squoosh",
@@ -73,7 +73,7 @@
                 {
                     "name": "找字体",
                     "url": "https://zfont.cn/",
-                    "logo": "/images/zfont.webp"
+                    "logo": "/image/logo/zfont.webp"
                 },
                 {
                     "name": "CodePen",
@@ -108,22 +108,22 @@
                 {
                     "name": "阿拉丁",
                     "url": "https://www.avatargpt.xyz/register?aff=ajrj7lxT5c",
-                    "logo": "/images/aladdin.webp"
+                    "logo": "/image/logo/aladdin.webp"
                 },
                 {
                     "name": "Clash Verge Rev",
                     "url": "https://github.com/clash-verge-rev/clash-verge-rev",
-                    "logo": "/images/clash-verge-rev.webp"
+                    "logo": "/image/logo/clash-verge-rev.webp"
                 },
                 {
                     "name": "v2rayN",
                     "url": "https://github.com/2dust/v2rayN",
-                    "logo": "/images/v2rayN.webp"
+                    "logo": "/image/logo/v2rayN.webp"
                 },
                 {
                     "name": "FlClash",
                     "url": "https://github.com/chen08209/FlClash",
-                    "logo": "/images/FlClash.webp"
+                    "logo": "/image/logo/FlClash.webp"
                 }
             ]
         }

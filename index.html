@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="keywords" content="AI工具箱,ChatGPT导航,人工智能工具,生活服务导航,资源聚合,在线工具箱,AI模型集合,网站导航,DeepSeek,Claude,Gemini,工具集合,素材资源">
   <meta name="description" content="一站式网址导航，汇集AI模型、生活服务、信息资讯、娱乐平台、实用工具与素材资源。为用户提供高效便捷的网络探索体验，轻松发现有价值的网络资源。">
-  <meta name="google-site-verification" content="-p-1tG0kscZCT5NppqZgBOgDUU73Vw-_8mGWnoWIT-o" />
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="William">
   
   <!-- Favicon 图标 -->
-  <link rel="icon" href="images/favicon.webp" type="image/x-icon">
-  <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.webp">
+  <link rel="icon" href="image/logo/favicon.webp" type="image/x-icon">
+  <link rel="shortcut icon" href="image/logo/favicon.webp" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="image/logo/favicon.webp">
   <meta name="theme-color" content="#ffffff">
   
   <!-- Open Graph 标签 -->
@@ -31,8 +30,9 @@
   <link rel="canonical" href="https://omninav.uk/">
   
   <title>AI工具箱 | 实用工具合集</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="preload" href="/css/home.css" as="style">
 
   <script type="application/ld+json">
   {
@@ -51,22 +51,10 @@
 </head>
   
   <body>
-    <!-- 侧边栏按钮 -->
-    <button id="sidebar-toggle" aria-label="菜单">
-      <span>🐣</span>
-    </button>
-
-    <!-- 侧边栏 -->
-    <div id="sidebar" class="sidebar">
-      <div class="sidebar-content">
-        <a href="articles.html" target="_blank">文章</a>
-        <a href="https://f.wps.cn/g/UTL0uZCE/" target="_blank">反馈</a>
-        <span>联系作者：william@omninav.uk</span>
+    <div id="top-nav">
+      <div class="top-links">
       </div>
-    </div>
-
-    <!-- 添加遮罩层 -->
-    <div class="sidebar-overlay"></div>
+  </div>
 
     <header>
       <form class="search-container">
@@ -76,23 +64,23 @@
           </div>
           <div class="select-dropdown">
             <div class="option" data-value="bing">
-              <img src="images/bing.webp" class="engine-icon">
+              <img src="image/logo/bing.webp" class="engine-icon">
               <span>Bing</span>
             </div>
             <div class="option" data-value="google">
-              <img src="images/google.webp" class="engine-icon">
+              <img src="image/logo/google.webp" class="engine-icon">
               <span>Google</span>
             </div>
             <div class="option" data-value="perplexity">
-                <img src="images/perplexity.webp" class="engine-icon">
+                <img src="image/logo/perplexity.webp" class="engine-icon">
                 <span>Perplexity</span>
             </div>
             <div class="option" data-value="Genspark">
-                <img src="images/genspark.webp" class="engine-icon">
+                <img src="image/logo/genspark.webp" class="engine-icon">
                 <span>Genspark</span>
             </div>
             <div class="option" data-value="ThinkAny">
-              <img src="images/thinkany.webp" class="engine-icon">
+              <img src="image/logo/thinkany.webp" class="engine-icon">
               <span>ThinkAny</span>
           </div>
           </div>
@@ -155,7 +143,8 @@
       
     </main>
 
-    <script src="script.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/home.js"></script>
   </body>
 
 </html>
