@@ -1,6 +1,6 @@
 function updateTopNav() {
     document.querySelector('.top-links').innerHTML = 
-      ['💡 导航', '🎉 福利', '📝 文章', '✉️ 联系']
+      ['💡 导航', '🎉 福利', '📝 文章', '✉️ 关于']
         .map((name, i) => `<a href="${[
           '/', 
           '/coupon/index.html', 

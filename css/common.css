@@ -59,18 +59,25 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
 
 /* 顶部导航样式 */
 #top-nav {
-    margin: 10px 0 0;
+    margin: 1vh 0 0;
 }
 
 .top-links {
-    margin: 0 20vw;
+    margin: 0 0 0 18vw;
+}
+
+@media screen and (max-width: 768px) {
+    .top-links {
+        margin: 0 0 0 1vw;
+    }
+    
 }
 
 .top-links a, nav a {
     color: #333;
     text-decoration: none;
     margin-right: 3vw;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     padding: 8px 5px;
     position: relative;
     letter-spacing: 0.5px;
@@ -84,9 +91,10 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
     width: 0;
     height: 2px;
     bottom: 0;
-    left: 0;
+    left: 50%;
     background-color: #007bff;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .top-links a:hover, nav a:hover {
@@ -95,4 +103,39 @@ a, button, .card, .search-submit, .select-trigger, .option, .engine-option {
 
 .top-links a:hover::after, nav ul li a:hover::after {
     width: 100%;
+    left: 50%;
 }
+
+nav {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    width: max-content; 
+    justify-content: center;
+  }
+  
+  nav ul li {
+    flex: 0 0 auto; 
+  }
+  
+  nav a.active {
+    color: #007bff;
+  }
+  
+  nav a.active::after {
+    width: 100%;
+    background-color: #007bff;
+  }

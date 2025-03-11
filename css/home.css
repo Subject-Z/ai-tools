@@ -109,40 +109,6 @@ header {
   margin-bottom: 3px;
 }
 
-nav {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  display: flex;
-  justify-content: center;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  width: max-content; 
-  justify-content: center; /* 修改为居中对齐 */
-}
-
-nav ul li {
-  flex: 0 0 auto; 
-}
-
-nav a.active {
-  color: #007bff;
-}
-
-nav a.active::after {
-  width: 100%;
-  background-color: #007bff;
-}
-
 /* 自适应主内容区域 */
 main {
   position: relative;
