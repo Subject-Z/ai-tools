@@ -1,35 +1,7 @@
-function initSidebar() {
-  const sidebar = document.querySelector('.sidebar');
-  const sidebarToggle = document.querySelector('#sidebar-toggle');
-  const sidebarOverlay = document.querySelector('.sidebar-overlay');
-  
-  if (!sidebar || !sidebarToggle) {
-    return;
-  }
-
-  // 侧边栏按钮点击事件
-  sidebarToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    sidebar.classList.toggle('open');
-    sidebarOverlay.classList.toggle('active');
-  });
-
-  // 点击遮罩层关闭侧边栏
-  sidebarOverlay.addEventListener('click', () => {
-    sidebar.classList.remove('open');
-    sidebarOverlay.classList.remove('active');
-  });
-
-  // 点击页面其他地方关闭侧边栏
-  document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-      sidebar.classList.remove('open');
-      sidebarOverlay.classList.remove('active');
-    }
-  });
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
+  // 在其他初始化之前，先初始化导航标签
+  await initCategoryNav();
+  
   // 搜索相关代码
   const searchContainer = document.querySelector('.search-container');
   const searchInput = document.querySelector('.search-input');
@@ -38,11 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const selectTrigger = customSelect ? document.querySelector('.select-trigger') : null;
   const options = customSelect ? document.querySelectorAll('.option') : null;
   let currentEngine = 'bing';
-
-  // 汉堡包菜单功能初始化
-  setTimeout(() => {
-    initSidebar();
-  }, 100);
 
   // 初始化搜索引擎选择器，自动选择第一个引擎
   function initSearchEngineSelector() {
@@ -69,29 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       // 标记第一个选项为已选中
       firstOption.classList.add('selected');
     }
-  }
-
-  // 汉堡包菜单初始化函数
-  function initHamburgerMenu() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuDropdown = document.querySelector('.hamburger-menu .menu-dropdown');
-    
-    if (!menuToggle || !menuDropdown) {
-      return;
-    }
-    
-    // 点击菜单按钮时切换下拉菜单显示
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      menuDropdown.classList.toggle('show');
-    });
-    
-    // 点击页面其他区域关闭下拉菜单
-    document.addEventListener('click', function(e) {
-      if (!menuDropdown.contains(e.target) && e.target !== menuToggle) {
-        menuDropdown.classList.remove('show');
-      }
-    });
   }
 
   // 设置搜索引擎图标 - 添加错误检查
@@ -170,36 +114,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 首先定义所有类
-  class CardManager {
-    constructor() {
-      this.initCardLogos();
-      this.initCardEvents();
-    }
-
-    initCardLogos() {
-      document.querySelectorAll('.card[data-logo]').forEach(card => {
-        card.style.setProperty('--logo-url', `url("${card.dataset.logo}")`);
-      });
-    }
-
-    initCardEvents() {
-      // 修改卡片点击事件处理 - 删除UTM参数处理
-      document.addEventListener('click', e => {
-        const target = e.target || e.srcElement; // 增加兼容性处理
-        const cardBody = target.closest ? target.closest('.card-body') : findParentByClass(target, 'card-body');
-        
-        if (cardBody) {
-          const link = cardBody.querySelector('a');
-          if (link) {
-            // 直接打开链接，不添加UTM参数
-            window.open(link.href, '_blank');
-          }
-        }
-      });
-    }
-  }
-
   class NavigationManager {
     constructor() {
       this.contentContainer = document.querySelector('main'); // 使用 main 标签作为内容容器
@@ -219,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     handleNavigation(navLink) {
       try {
-        toggleActiveClass(document.querySelectorAll('.nav-link'), navLink);
+        window.toggleActiveClass(document.querySelectorAll('.nav-link'), navLink);
         // 使用category作为section id
         const targetSection = document.getElementById(navLink.dataset.category);
         
@@ -262,113 +176,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   }
-
-  // 优化后的域名切换功能 - 考虑CNAME别名和多托管服务器情况
-  function initDomainFallback() {
-    // 避免循环跳转
-    if (new URLSearchParams(window.location.search).get('from') === 'fallback') {
-      return;
-    }
   
-    // 定义域名配置和优先级
-    const DOMAIN_CONFIG = {
-      // 主域名 (CNAME别名)
-      "omninav.uk": {
-        priority: 1,
-        fallback: ["ai-tools-1i5.pages.dev", "subject-z.github.io"]
-      },
-      // 托管服务器1
-      "ai-tools-1i5.pages.dev": {
-        priority: 2, 
-        fallback: ["subject-z.github.io", "omninav.uk"]
-      },
-      // 托管服务器2
-      "subject-z.github.io": {
-        priority: 3,
-        fallback: ["ai-tools-1i5.pages.dev", "omninav.uk"]
-      },
-      // 本地开发环境不跳转
-      "127.0.0.1": {
-        priority: 0,
-        fallback: []
-      },
-      "localhost": {
-        priority: 0,
-        fallback: []
-      }
-    };
-    
-    const currentHostname = window.location.hostname;
-    const config = DOMAIN_CONFIG[currentHostname];
-    
-    // 如果当前域名未在配置中或为本地开发环境，不进行跳转
-    if (!config || config.priority === 0) {
-      return;
-    }
-    
-    // 检测当前站点可用性，如果不可用则立即跳转
-    checkSiteAvailability()
-      .then(isAvailable => {
-        if (!isAvailable && config.fallback.length > 0) {
-          // 当前站点不可用，立即跳转到备选站点
-          performFallback(config.fallback[0]);
-        }
-      })
-      .catch(() => {
-        // 检测过程中出错，也立即跳转到备选站点
-        if (config.fallback.length > 0) {
-          performFallback(config.fallback[0]);
-        }
-      });
-  }
-  
-  // 检查当前站点可用性
-  function checkSiteAvailability() {
-    return new Promise((resolve) => {
-      const timeoutId = setTimeout(() => {
-        resolve(false);
-      }, 1000);
-      
-      fetch(`/favicon.ico?t=${Date.now()}`, { 
-        method: 'HEAD',
-        mode: 'no-cors',
-        cache: 'no-store'
-      })
-      .then(() => {
-        clearTimeout(timeoutId);
-        resolve(true); // 请求成功认为可用
-      })
-      .catch(() => {
-        clearTimeout(timeoutId);
-        resolve(false); // 请求失败认为不可用
-      });
-    });
-  }
-  
-  // 执行域名跳转
-  function performFallback(fallbackDomain) {
-    if (!fallbackDomain) {
-      return;
-    }
-    
-    // 保存当前路径和查询参数，以便在跳转时保留
-    const currentPathWithQuery = window.location.pathname + window.location.search + window.location.hash;
-    
-    // 添加fallback标记，防止循环重定向
-    const separator = currentPathWithQuery.includes('?') ? '&' : '?';
-    const fallbackMarker = `${separator}from=fallback`;
-    const fullPath = currentPathWithQuery + (currentPathWithQuery.includes('from=fallback') ? '' : fallbackMarker);
-    
-    // 生成跳转URL并立即跳转
-    const protocol = window.location.protocol;
-    window.location.href = `${protocol}//${fallbackDomain}${fullPath}`;
-  }
-  
-  // 在DOMContentLoaded事件中调用
-  initDomainFallback();
-  
-  // 然后再初始化管理器
-  new CardManager();
+  // 然后初始化管理器
+  new window.CardManager();
   window.navigationManager = new NavigationManager();
   
   // 最后加载数据
@@ -376,15 +186,54 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSearchEngineSelector();
 });
 
-// 工具函数
-const toggleActiveClass = (elements, activeElement) => {
-  elements.forEach(el => el.classList.remove('active'));
-  activeElement.classList.add('active');
-};
+// 初始化分类导航标签
+async function initCategoryNav() {
+  try {
+    // 获取导航容器内的链接容器
+    const categoryLinks = document.querySelector('.category-links');
+    if (!categoryLinks) return;
+
+    // 加载索引文件
+    const response = await fetch('data/index.json');
+    if (!response.ok) throw new Error(`索引文件加载失败! status: ${response.status}`);
+    
+    const index = await response.json();
+    if (!index.categories || !index.categories.length) throw new Error('类别数据为空');
+    
+    // 创建导航标签 - 直接使用div包含链接，不使用ul/li结构
+    const navHTML = index.categories.map((category, i) => 
+      `<a href="#" class="nav-link ${i === 0 ? 'active' : ''}" 
+         data-category="${category}">${getCategoryLabel(category)}</a>`
+    ).join('');
+    
+    // 更新链接容器内容
+    categoryLinks.innerHTML = navHTML;
+    
+    return index.categories;
+  } catch (error) {
+    console.error('初始化导航标签失败:', error);
+    return [];
+  }
+}
+
+// 获取分类的显示标签
+function getCategoryLabel(category) {
+  const labels = {
+    'aigc': 'AI',
+    'lifestyle': '生活',
+    'information': '信息',
+    'entertainment': '娱乐',
+    'productivity': '效率'
+    // 可根据需要添加更多标签映射
+  };
+  return labels[category] || category;
+}
 
 // 修改 renderContent 函数
 function renderContent(data) {
-  const mainContent = document.getElementById('main-content');
+  const mainContent = document.querySelector('.website-directory');
+  if (!mainContent) return; // 安全检查
+  
   mainContent.innerHTML = ''; // 清空现有内容
   
   // 使用category字段作为section id
@@ -432,7 +281,7 @@ function renderCategory(category) {
       
       // 渲染当前子分类下的所有卡片
       subcategory.items.forEach(item => {
-        subcategoryContent.appendChild(createCard(item));
+        subcategoryContent.appendChild(window.createCard(item));
       });
       
       subcategorySection.appendChild(subcategoryContent);
@@ -440,55 +289,11 @@ function renderCategory(category) {
     });
   } else if (category.items && category.items.length > 0) {
     category.items.forEach(item => {
-      cardList.appendChild(createCard(item));
+      cardList.appendChild(window.createCard(item));
     });
   }
   
   section.appendChild(cardList);
-}
-// 创建单个卡片
-function createCard(cardData) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  
-  // 创建卡片主体容器
-  const cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-  card.appendChild(cardBody);
-  
-  // 创建 logo 元素
-  const logo = document.createElement('div');
-  logo.className = 'card-logo';
-  if (cardData.logo) {
-    logo.style.backgroundImage = `url("${cardData.logo}")`;
-  }
-  cardBody.appendChild(logo);
-  
-  // 主链接
-  const link = document.createElement('a');
-  link.href = cardData.url;
-  link.target = '_blank';
-  link.textContent = cardData.name;
-  cardBody.appendChild(link);
-  
-  // 添加优惠链接按钮（如果存在）- 放在主链接下方，但在卡片容器内
-  if (cardData.promotion) {
-    const promotionBtn = document.createElement('a');
-    // 不直接设置href属性，而是使用javascript:void(0)
-    promotionBtn.href = "javascript:void(0)";
-    promotionBtn.className = 'promotion-btn';
-    promotionBtn.textContent = cardData.promotion.text || '优惠';
-    
-    // 使用点击事件处理器来打开链接
-    promotionBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open(cardData.promotion.url, '_blank');
-    });
-    
-    card.appendChild(promotionBtn);
-  }
-  
-  return card;
 }
 
 // 修改加载数据的方式
@@ -545,17 +350,6 @@ async function loadData() {
       firstNavLink.classList.add('active');
     }
   } catch (error) {
-    document.getElementById('main-content').innerHTML = '<p>加载数据失败，请刷新页面重试</p>';
+    document.getElementsByClassName('website-directory').innerHTML = '<p>加载数据失败，请刷新页面重试</p>';
   }
-}
-
-// 添加辅助函数用于向上查找具有特定类名的父元素
-function findParentByClass(element, className) {
-  while (element) {
-    if (element.classList && element.classList.contains(className)) {
-      return element;
-    }
-    element = element.parentNode;
-  }
-  return null;
 }

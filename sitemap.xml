@@ -16,25 +16,17 @@
     </image:image>
   </url>
 
-    <!-- 福利列表页 -->
+  <!-- 小说页面 -->
   <url>
-    <loc>https://omninav.uk/coupon/</loc>
+    <loc>https://omninav.uk/webnovel/</loc>
     <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
   </url>
   
-  <!-- 文章列表页 -->
+  <!-- 关于 -->
   <url>
-    <loc>https://omninav.uk/blog/</loc>
-    <lastmod>2025-03-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- 关于我们 -->
-  <url>
-    <loc>https://omninav.uk/about-us/</loc>
+    <loc>https://omninav.uk/about/</loc>
     <lastmod>2025-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
